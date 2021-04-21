@@ -126,7 +126,7 @@ Several distributed architectures have been proposed to manage the communication
 % Aqui comenta algunos otros brevemente 
 % con referencias - M
 % Conector:
-Recently, there is interest in cloud-native, event-based architectures
+Recently, there is an interest in cloud-native, event-based architectures
 suitable to run locally on a personal computer or in a cloud platform
 service.
 %% Ahora si:
@@ -163,31 +163,82 @@ This paper contains the following sections: The basic concepts used in this work
 % Mejor poner aquí el State of the Art, los otros tipos de
 % Multipoblación 
 % Ya viendola bien, le podemos poner de nombre State of the Art 
-% en lugar the basic concepts - M 
+% en lugar the basic concepts - M
+% The state of the art refers to different methods *solving the same
+% problem* and will be used to compare against. You need to qualify
+% the problem domain - JJ
 
 %\subsection{Swarm Intelligence}
-“Swarm intelligence (SI) is the collective behavior of decentralized, self-organized, natural or artificial systems.” The concept is used in artificial intelligence work. The expression was first brought up by Gerardo Beni and Jing Wang in 1989 in the context of robotic cellular systems \cite{b4}. 
+“Swarm intelligence (SI) is the collective behavior of decentralized,
+self-organized, natural or artificial systems.” The expression was
+first brought up by Gerardo Beni and Jing Wang in 1989 in the context
+of robotic cellular systems \cite{b4}.
 
-SI systems are mostly made of a population of simple particles that interact with each other and with their environment at a local level. The inspiration to make this kind of system comes from nature, especially biological systems. Particles follow very simple rules for their interactions and these interactions lead to the creation of a global "smart" behavior \cite{b5}.
+SI systems are mostly made of a population of simple particles that
+interact with each other and with their environment at a local
+level. The inspiration to make this kind of system comes from nature,
+especially biological systems. Particles follow very simple rules for
+their interactions and these interactions lead to the creation of a
+global "smart" behavior \cite{b5}.
+% These paragraphs above could be suppressed - JJ
 
 %\subsection{PSO}
 % Agregar un párrafo que conecte con esto:
 Knowing that it is planned to work with different populations of swarms, the need to use an optimization algorithm that has an affinity with this technique and with swarm intelligence is generated. From what has been observed in countless works, some of them mentioned in this paper, PSO has great compatibility with the techniques that are intended to be used.
 
-Particle Swarm Optimization (PSO) is an optimization algorithm inspired by some animals' behavior, such as flocks of birds or schools of fish. Since it was introduced in 1995 by  J. Kennedy and R. Eberhar, it has undergone several improvements.\cite{b1} % pon el nombre del autor - M -j
+Particle Swarm Optimization (PSO) is an optimization algorithm
+inspired flocks of birds or schools
+of fish. Since it was introduced in 1995 by  J. Kennedy and
+R. Eberhar, it has undergone several improvements \cite{b1}. % pon el nombre del autor - M -j
 Since then, researchers have created different versions, which aimed at different
 purposes, developed new applications in many areas, published theoretical
-studies on the effects of various parameters, and proposed many many algorithm variants \cite{b2}. A basic version of the PSO algorithm works with a population (swarm) of possible solutions (particles). These particles move in the search space according to some simple formulas. The movements in the particles' search space are determined by their best-known position and by the best-known position of the entire swarm. As better positions are discovered, they will guide the swarm's movements. The process is repeated many times, so it is expected that a satisfactory solution will eventually be discovered, although this may not happen\cite{b3}.
+studies on the effects of various parameters, and proposed many many
+algorithm variants \cite{b2}. A basic version of the PSO algorithm
+works with a population (swarm) of possible solutions
+(particles). These particles move in the search space according to
+some simple formulas. The movements in the particles' search space are
+determined by their best known position and by the best known position
+of the entire swarm. As better positions are discovered, they will
+guide the swarm's movements. The process is repeated many times, so it
+is expected that a satisfactory solution will eventually be
+discovered, although this may not happen\cite{b3}.
+% The state of the art should be an exposition of what is the current
+% *state* of the problem that will be solved. - JJ
 
 \subsection{Multi-Swarm PSO}
 
-Multi-swarm optimization is a variant of Particle Swarm Optimization (PSO) based  multiple swarms (or sub-swarm) instead of one. The basic flow in a multi-swarm optimization is that each sub-swarm focuses on a specific search space region. In contrast, a specific diversification method decides where and when to launch the sub-swarms. 
+% Still no idea of the problem that is going to be solved, and why we
+% need multiple swarms. Also, it should go to the state of the art if
+% this is the focus of the paper - JJ
 
-For example, Wave of Swarm of Particles \cite{b6}, this work bases its diversification technique on the "collision" of particles. When the particles close to each other, they are sent into new sub-swarms, preventing complete convergence. The Dynamic Multi-Swarm-Particle Swarm Optimizer\cite{b7} regroups the particles from the sub-swarms (if they have converged) into new sub-swarms periodically, so the new iteration of swarms are started with particles from the previous one. Locust swarms \cite{b8} are founded on a "devour and go" strategy after a sub-swarm "devours" a small fraction of the search space. In order to find a local optimum, explorers are deployed to search for new regions promising to "keep going."
+Multi-swarm optimization is a variant of Particle Swarm Optimization
+(PSO) based on multiple swarms (or sub-swarm) instead of one. The basic flow in a multi-swarm optimization is that each sub-swarm focuses on a specific search space region. In contrast, a specific diversification method decides where and when to launch the sub-swarms. 
 
-In contrast to typical PSO swarms, sub-swarms are fed with some information about previous swarms. These could be the positions and velocities instead of having their initial parameters to be randomly selected. In general, the development of multi-swarm systems creates a new path of design decisions that did not exist during the original development of PSO. These design decisions have been have well-established guidelines thanks to the numerous studies on the topic, for example, the use of non-random initial positions and initial velocities leads to better re-sults in multi-swarm systems, which is not the case for individual swarms \cite{b9}.
+For example, Wave of Swarm of Particles \cite{b6} bases its
+diversification technique on the "collision" of particles. When the
+particles are close to each other, they are sent into new sub-swarms,
+preventing complete convergence. The Dynamic Multi-Swarm-Particle
+Swarm Optimizer\cite{b7} regroups the particles from the sub-swarms
+(if they have converged) into new sub-swarms periodically, so the new
+iteration of swarms are started with particles from the previous
+one. Locust swarms \cite{b8} are founded on a "devour and go" strategy
+after a sub-swarm "devours" a small fraction of the search space. In
+order to find a local optimum, explorers are deployed to search for
+new regions promising to "keep going." % This should probably go to
+                                % state of the art - JJ
 
-Some of these decisions can be reached by relatively independent subcomponents that allow different optimization techniques to be tested. For example, the multi-swarm system UMDA-PSO \cite{b10} combines elements of particle swarm optimization, distribution estimation algorithm, and differential evolution in a multi-swarm hybrid method.
+In contrast to typical PSO swarms, sub-swarms are fed with some
+information % you should qualify "some" - jj
+about previous swarms. These could be the positions and velocities instead of having their initial parameters to be randomly selected. In general, the development of multi-swarm systems creates a new path of design decisions that did not exist during the original development of PSO. These design decisions have been have well-established guidelines thanks to the numerous studies on the topic, for example, the use of non-random initial positions and initial velocities leads to better re-sults in multi-swarm systems, which is not the case for individual swarms \cite{b9}.
+
+Some of these decisions can be reached by relatively independent
+subcomponents that allow different optimization techniques to be
+tested. For example, the multi-swarm system UMDA-PSO \cite{b10}
+combines elements of particle swarm optimization, distribution
+estimation algorithm, and differential evolution in a multi-swarm
+hybrid method. % The whole introduction should go to State of the art
+               % - JJ
+
 
 
 
@@ -204,23 +255,48 @@ Based on the previous information, another problem is born, and it is how to han
     \item A communication interval that establishes the frequency to execute the communication.
     \item A connection topology that defines how to connect sub-populations.
 
+      % This should go to the introduction. - JJ
+      
 \end{itemize}
 
-There have been some papers focused in optimizing the communication between swarms, for example the survey in reference \cite{b15} has a collection of different investigations around this subject. For example El-Abd and Kamel discussed the multiple factors that can change the behavior of multiple cooperating swarms, these factors included the communication strategy used and the number swarms. The experimental results demonstrated that a circular topology communication strategy has an overall better performance than those that simple share the global best of all the swarms\cite{b16}.
-Another example and the source of inspiration for this paper, is one of Li and Zeng, who presented a multi-population agent based co-genetic algorithm with a chain-like structure for parallel global numerical optimization, where a close chain-like connection structure, a cycle chain-like connection structure and a dynamic neighborhood were used to improve the parallel optimization\cite{b17}.
+There have been some papers focused in optimizing the communication
+between swarms, for example the survey in reference \cite{b15} has a
+collection of different investigations around this subject. For
+example El-Abd and Kamel discussed the multiple factors that can
+change the behavior of multiple cooperating swarms, these factors
+included the communication strategy used and the number swarms. The
+experimental results demonstrated that a circular topology
+communication strategy has an overall better performance than those
+that simple share the global best of all the swarms\cite{b16}. % State
+                                % of the art should be the best place
+                                % for this - JJ
+
+Another example and the source of inspiration for this paper, is one
+of Li and Zeng, who presented a multi-population agent based
+co-genetic algorithm with a chain-like structure for parallel global
+numerical optimization, where a close chain-like connection structure,
+a cycle chain-like connection structure and a dynamic neighborhood
+were used to improve the parallel optimization\cite{b17}. % Definitely
+                                % state of the art - JJ
 
 
 \subsection{EvoSwarm}
 
-EvoSwarm is a relatively new way of working with multi-populations algorithms, this method is based around a structure of queues that are ready to receive and send messages across a network of individual computers \cite{b18}. This structure behaves like a factory for optimization, allowing the user to optimize several populations simultaneously and allow different optimization algorithms. All of this while being a continuous optimizer means that any population in the process can re-enter the optimizing phase of the structure to be re-optimized. In Figure 1 it can be appreciated how the EvoSwarm communicates.
+EvoSwarm is based around a structure of queues that are ready to
+receive and send messages across a network of individual computers
+\cite{b18}. % Better a higher-level description, describing what's in
+            % the queues. Also, message queues. - JJ
+This structure  allows the user to work on several populations and
+allow different optimization algorithms % (See Figure \ref{fig:example}).
 
-\begin{figure}[h]
-\centering
-\DeclareGraphicsExtensions{.jpg}
-\includegraphics[scale=.40]{Resources/F1-1.jpg}
-\caption{The EvoSwarm flow.}
-\label{fig:example}
-\end{figure}
+% \begin{figure}[h]
+% \centering
+% \DeclareGraphicsExtensions{.jpg}
+% \includegraphics[scale=.40]{Resources/F1-1.jpg}
+% \caption{The EvoSwarm flow.}
+% \label{fig:example}
+% \end{figure}
+% Eliminated. It's in Spanish...
 
 It is worth mentioning that this architecture can be implemented using various computers in a network or using a virtualization tool, like in the case of this research using Docker. Here are some of the most important features that EvoSwarm brings to the user:
 
@@ -303,35 +379,36 @@ In the original communication policy, the architecture waited until a minimum of
 \subsection{Chain communication topology}
 The first modification, in this case, is only to the merging process. To create a chained algorithm affect every three arriving populations will be sent into the migrations process, and like the original version, we sort the three populations. The modification consists in that the populations are only allowed to share a few members of the elite. In this case, 10. Individuals are carried into a chain structure in which a population can receive only one way of the structure and shares in another.
 
-\begin{figure}
-\centering
-\DeclareGraphicsExtensions{.png,.pdf}
-\includegraphics[width=0.35\linewidth]{Resources/F2.png}
-\caption{Chain topology structure.}
-\label{fig:example}
-\end{figure}
+% \begin{figure}
+% \centering
+% \DeclareGraphicsExtensions{.png,.pdf}
+% \includegraphics[width=0.35\linewidth]{Resources/F2.png}
+% \caption{Chain topology structure.}
+% \label{fig:example}
+% \end{figure}
 
 \subsection{Hypercube communication topology}
 The 2nd variation for the EvoSwarm structure is called a Hypercube; this one is based on a paper in which this topology was applied to solve a multi-reservoir of water using a multi-population algorithm \cite{b20}.  
 
 This one is the most complicated topology presented in this paper. The name indicates this method has a cubic structure and can only be operated with eight populations at the same time or more. For this paper, we only need eight populations. Once the algorithm gets filled with eight populations, the migrations algorithm needs to assign each one a place in the hypercube structure. Figure 3 it has shown the layout of the structure.
 
-\begin{figure}
-\centering
-\DeclareGraphicsExtensions{.png,.pdf}
-\includegraphics[width=0.35\linewidth]{Resources/F3.png}
-\caption{Hypercube structure.}
-\label{fig:example}
-\end{figure}
+% \begin{figure}
+% \centering
+% \DeclareGraphicsExtensions{.png,.pdf}
+% \includegraphics[width=0.35\linewidth]{Resources/F3.png}
+% \caption{Hypercube structure.}
+% \label{fig:example}
+% \end{figure}
 
 The structure resembles a cube, and in every one of its vertices is one population. One thing that stands immediately is the capital P because only four populations have it, and was made this discrepancy between the two groups to represent a division. In this algorithm, we divided the Hypercube into two dimensions. Moreover, depending on the iteration of the experiment, the exchange of solutions is restricted.
 
 Every iteration of an experiment changes the mode in which the populations communicate with each other. For example, in the first iteration, the eight populations can only communicate with the others in the same dimension. In the second iteration, the opposite happens, allowing them to exchange information with a population outside that dimension.   With eight vertices, only two exchanges are allowed, and for the experiments on this paper, only the best 10\% of solutions migrate to another swarm. 
 
 \section{Experimental Results}
+
 Table 3 shows the different MSE obtained in the experimentation.
 
-\begin{table}[h]
+\begin{table}[h!tb]
     \centering
     \caption{Comparison of MSE obtained with the experiments, best results are in bold}
     \scalebox{0.72}{
@@ -370,7 +447,7 @@ Table 3 shows the different MSE obtained in the experimentation.
 We present the statistical tests below to compare the three methods applied in this work, comparing the two new methods with the original method and between them. In this case, we use a \(Z\) statistical test with an $\alpha$ of 0.5, giving a critical value to exceed 1.64; in Table 4, the comparison between the EvoSwarm method and the Chain method can be observed. Table 5 shows the comparison between EvoSwarm and the Hypercube method. Finally, Table 6 is the comparison between the methods and the Hypercube chain.\hfill \break
 % Please add the following required packages to your document preamble:
 % \usepackage{booktabs}
-\begin{table}[H]
+\begin{table}
 \caption{Statistical comparison for EvoSwarm vs Chain method, positive test results are in bold}
     \scalebox{0.99}{
 \begin{tabular}{|c|c|c|c|c|c|}
@@ -401,7 +478,7 @@ Dimension & Function & EvoSwarm MSE & Chain MSE  & EvoSwarm vs Chain Z value & Z
 \end{tabular}}
 \end{table}
 %EvoSwarm vs Hypercube
-\begin{table}[H]
+\begin{table}
 \caption{Statistical comparison for EvoSwarm vs Hypercube method, positive test results are in bold}
     \scalebox{0.90}{
 \begin{tabular}{|c|c|c|c|c|c|}
@@ -434,7 +511,7 @@ Dimension & Function & EvoSwarm MSE & Hypercube MSE  & EvoSwarm vs Hypercube Z v
 
 %Chain vs Hypercube
 
-\begin{table}[H]
+\begin{table}[h!tb]
 \caption{Statistical comparison for Chain vs Hypercube method, positive test results are in bold}
     \scalebox{0.99}{
 \begin{tabular}{|c|c|c|c|c|c|}
@@ -467,9 +544,26 @@ Dimension & Function & Chain MSE & Hypercube MSE  & Chain vs Hypercube Z value &
 \hfill
 \break
 \section{Conclusions}
-In this research, we compared three communication methods between populations of a multi-swarm system to identify the variation in the result caused by these changes. However, the difference between most of the results is not very large. Nevertheless, there are scenarios in which the change was quite relevant, so it is possible to say that the change in communication policies significantly impacts multi-swarm methods for continuous optimization. In the same way, we must take into account that in this case, we only changed the type of communication between sub-swarms, which is only one of the policies that we can alter in this type of system. In future works, other policies can be altered at the same time to see what impact they will have. With the results obtained, we can infer that the change to the communication method is relevant for this type of system in specific situations. The alteration of the different work policies in multi-swarm systems could lead to greater specialization of these in specific scenarios.
+In this research, we compared three communication methods between
+populations of a multi-swarm system to identify the variation in the
+result caused by these changes. However, the difference between most
+of the results is not very large. Nevertheless, there are scenarios in
+which the change was quite relevant, so it is possible to say that the
+change in communication policies significantly impacts multi-swarm
+methods for continuous optimization. In the same way, we must take
+into account that in this case, we only changed the type of
+communication between sub-swarms, which is only one of the policies
+that we can alter in this type of system. In future works, other
+policies can be altered at the same time to see what impact they will
+have. With the results obtained, we can infer that the change to the
+communication method is relevant for this type of system in specific
+situations. The alteration of the different work policies in
+multi-swarm systems could lead to greater specialization of these in
+specific scenarios.
 
+\section*{Acknowledgments}
 
+This paper has been supported in part by project DeepBio (TIN2017-85727-C4-2-P).
 
 \begin{thebibliography}{4}
 
