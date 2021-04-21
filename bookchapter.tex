@@ -43,6 +43,8 @@
 \title{Application of a chain-like and a hypercube communication topology 
 in a multi-swarm PSO algorithm applied to continuous optimization problems}
 % Los titulos no llevan punto al final - M
+% Maybe this is a bit too long? Also, it would be best to say *why*
+% you did this, instead of what you did - JJ
 
 % a short form should be given in case it is too long for the running head
 \titlerunning{José Guzmán, Mario Garcia}
@@ -53,7 +55,7 @@ in a multi-swarm PSO algorithm applied to continuous optimization problems}
 % their surnames. This ensures that the names appear correctly in
 % the running heads and the author index.
 %
-\author{José Guzmán \and Mario García-Valdez}
+\author{José Guzmán \and Mario García-Valdez \and Juan J. Merelo-Guervós}
 
 \authorrunning{Guzmán et al.}
 % (feature abused for this document to repeat the title also on left hand pages)
@@ -61,7 +63,8 @@ in a multi-swarm PSO algorithm applied to continuous optimization problems}
 % the affiliations are given next; don't give your e-mail address
 % unless you accept that it will be published
 \institute{Tijuana Institute of Technology, Tijuana, Mexico
-\email{jose.guzmanc19@tectijuana.edu.mx, mario@tectijuana.edu.mx}}
+  \email{jose.guzmanc19@tectijuana.edu.mx, mario@tectijuana.edu.mx} \and
+University of Granada, Spain, \email{jmerelo@ugr.es}}
 
 
 
@@ -80,8 +83,19 @@ in a multi-swarm PSO algorithm applied to continuous optimization problems}
 
 \begin{abstract}
 
-In this paper, there will be a comparison of optimization politics regarding the
-change in communication topologies in a multi-population PSO, witch are a variation of normal PSO that create various populations called swarms in order to improve certain aspects of the performance in the optimization, algorithm that is working in a new event-based architecture. The comparison has been done based on continuous optimization for benchmark functions and was between the original algorithm made into this new architecture called EvoSwarm and a variant of this witch has applied a chain topology and a hypercubic topology as communication policy. Showing that in the majority of the functions evaluated, the chain topology  ended up winning using the MSE as reference.
+In this paper, there will be a comparison of optimization policies regarding the
+change in communication topologies in a multi-population PSO, a
+variation of normal PSO that create various populations called swarms
+in order to improve certain aspects of the performance in the
+optimization algorithm that is working in a new event-based
+architecture. The comparison has been done based on continuous
+optimization for benchmark functions and was between the original
+algorithm made into this new architecture called EvoSwarm and a
+variant of this witch has applied a chain topology and a hypercubic
+topology as communication policy. Showing that in the majority of the
+functions evaluated, the chain topology  ended up winning using the
+MSE as reference. % Probably rewrite it. Why did you do it? Why did
+                  % you think it would work? - JJ
 
 \keywords{PSO, EvoSwarm, multi-swarm intelligence, communication topologies,
  chain algorithm, hypercube, multi-swarm PSO.}
@@ -90,23 +104,56 @@ change in communication topologies in a multi-population PSO, witch are a variat
 
 \section{Introduction}
 
+% 1. State the context
+% 2. State the problem
+% 3. Say the hypothesis you want to prove in the paper, its objective.
+% 4. Say how you want to prove that hypothesis.
+
 Among the various strategies that have emerged in recent times for bio-inspired
-optimization algorithms, the creation of multiple populations to work in
-parallel and asynchronously has proven to be valuable \cite{a1}.
+optimization algorithms, the creation of multiple populations working
+in parallel and (possibly) asynchronously has proven to be valuable \cite{a1}.
 % Las citas se ponen antes del punto - M 
-% Procurar no poner superlativos como 'the most'a menos que tengamos los datos - M 
-One of the critical points in this technique is communication between populations, since it has been observed in various studies that the exchange of possible solutions helps to improve the performance of optimization algorithms \cite{a2}.
+% Procurar no poner superlativos como 'the most'a menos que tengamos
+% los datos - M
+% Anyway, you should state the problem and context first, not what you
+% are going to do. Also, valuable for what kind of problems? - JJ
+One of the critical points in this technique is communication between
+populations, since it has been observed in various studies that the
+exchange of possible solutions helps to improve the performance of
+optimization algorithms \cite{a2}.
 % Aquí falta un parrafo que conecte con lo que sigue, por ejemplo: 
 Several distributed architectures have been proposed to manage the communication and parallel execution of these kind of algorithms, for example there is a similar approach by Scott Haberson et al using a multi-population parallel genetic algorithm for in depended evolution \cite{da1}.
 % Aqui comenta algunos otros brevemente 
-% con referencias - M 
-% Conector: 
-Recently, there is interest in cloud-native, event-based architectures suitable to run locally on a personal computer or in a cloud platform service. 
-%% Ahora si: 
-An event-based architecture uses events to trigger and communicate between services and processes. An event is a state change or an update, like an order placed in a food delivery application. Events can either carry the state (the item purchased, its price, and a delivery address) or be just identifiers (a notification that an order was shipped). Using an event-based architecture, we intend to carry out a series of experiments to analyze the effect of changing the communication topology in a multi-population optimization algorithm's performance. Using this type of architecture with a multi-swarm optimization algorithm is a new approach. There is an opportunity to find a substantial variation in the performance of such an optimization algorithm by changing the way the various swarms communicate to exchange information. 
+% con referencias - M
+% Conector:
+Recently, there is interest in cloud-native, event-based architectures
+suitable to run locally on a personal computer or in a cloud platform
+service.
+%% Ahora si:
+An event-based architecture uses events to trigger and communicate
+between services and processes. An event is a state change or an
+update, like an order placed in a food delivery application. Events
+can either carry the state (the item purchased, its price, and a
+delivery address) or be just identifiers (a notification that an order
+was shipped). Using an event-based architecture, we intend to carry
+out a series of experiments to analyze the effect of changing the
+communication topology in a multi-population optimization algorithm's
+performance. Using this type of architecture with a multi-swarm
+optimization algorithm is a new approach. There is an opportunity to
+find a substantial variation in the performance of such an
+optimization algorithm by changing the way the various swarms
+communicate to exchange information.
 
-
-In this paper, we concentrate our efforts on the specific case of using a chain and a hypercube topology in this new architecture. We chose these topologies for their ability to be adapted to the architecture mentioned above. They can work without altering the optimization algorithm allowing a fair comparison with other communication methods. In this work, we use only a PSO algorithm to assess the difference this simple change has on this algorithm.
+% You should say something about topologies and their influence on the
+% final result. Why chain? Why hypercube? If topology is the focus,
+% different options should be checked - JJ
+In this paper, we focus our efforts on the specific case of using a
+chain and a hypercube topology in this new architecture. We chose
+these topologies for their ability to be adapted to the architecture
+mentioned above. They can work without altering the optimization
+algorithm allowing a fair comparison with other communication
+methods. In this work, we use only a PSO algorithm to assess the
+difference this simple change has on this algorithm.
 
 This paper contains the following sections: The basic concepts used in this work are in Section 2. Section 3 contains the information regarding the proposed method. Section 4 presents experimental results, and in Section 5, the conclusions for this investigation.
 
