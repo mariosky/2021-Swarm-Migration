@@ -81,11 +81,7 @@ in a multi-swarm PSO algorithm applied to continuous optimization problems}
 \begin{abstract}
 
 In this paper, there will be a comparison of optimization politics regarding the
-change in communication topologies in a multi-population PSO, witch are a variation of normal PSO that create various populations called swarms in order to improve certain aspects of the performance in the optimization, algorithm that is
-working in a new event-based architecture. The comparison has been done
-based on continuous optimization for benchmark functions and was between the
-original algorithm made into this new architecture called EvoSwarm and a variant
-of this witch has applied a chain topology and a hypercubic topology as communication policy. Showing that in the majority of the functions evaluated, the chain topology  ended up winning using the MSE as reference.
+change in communication topologies in a multi-population PSO, witch are a variation of normal PSO that create various populations called swarms in order to improve certain aspects of the performance in the optimization, algorithm that is working in a new event-based architecture. The comparison has been done based on continuous optimization for benchmark functions and was between the original algorithm made into this new architecture called EvoSwarm and a variant of this witch has applied a chain topology and a hypercubic topology as communication policy. Showing that in the majority of the functions evaluated, the chain topology  ended up winning using the MSE as reference.
 
 \keywords{PSO, EvoSwarm, multi-swarm intelligence, communication topologies,
  chain algorithm, hypercube, multi-swarm PSO.}
@@ -99,12 +95,10 @@ optimization algorithms, the creation of multiple populations to work in
 parallel and asynchronously has proven to be valuable \cite{a1}.
 % Las citas se ponen antes del punto - M 
 % Procurar no poner superlativos como 'the most'a menos que tengamos los datos - M 
-One of the critical points in this technique is communication between populations, since
-it has been observed in various studies that the exchange of possible solutions
-helps to improve the performance of optimization algorithms \cite{a2}.
+One of the critical points in this technique is communication between populations, since it has been observed in various studies that the exchange of possible solutions helps to improve the performance of optimization algorithms \cite{a2}.
 % Aquí falta un parrafo que conecte con lo que sigue, por ejemplo: 
-Several distributed architectures have been proposed to manage the communication 
-and parallel execution of these kind of algorithms, % Aqui comenta algunos otros brevemente 
+Several distributed architectures have been proposed to manage the communication and parallel execution of these kind of algorithms, for example there is a similar approach by Scott Haberson et al using a multi-population parallel genetic algorithm for in depended evolution \cite{da1}.
+% Aqui comenta algunos otros brevemente 
 % con referencias - M 
 % Conector: 
 Recently, there is interest in cloud-native, event-based architectures suitable to run locally on a personal computer or in a cloud platform service. 
@@ -131,9 +125,9 @@ SI systems are mostly made of a population of simple particles that interact wit
 
 %\subsection{PSO}
 % Agregar un párrafo que conecte con esto:
+Knowing that it is planned to work with different populations of swarms, the need to use an optimization algorithm that has an affinity with this technique and with swarm intelligence is generated. From what has been observed in countless works, some of them mentioned in this paper, PSO has great compatibility with the techniques that are intended to be used.
 
-Particle Swarm Optimization (PSO) is an optimization algorithm inspired by some animals' behavior, such as flocks of birds or schools of fish. Since it
-was introduced in 1995, it has undergone several improvements.\cite{b1} % pon el nombre del autor - M 
+Particle Swarm Optimization (PSO) is an optimization algorithm inspired by some animals' behavior, such as flocks of birds or schools of fish. Since it was introduced in 1995 by  J. Kennedy and R. Eberhar, it has undergone several improvements.\cite{b1} % pon el nombre del autor - M -j
 Since then, researchers have created different versions, which aimed at different
 purposes, developed new applications in many areas, published theoretical
 studies on the effects of various parameters, and proposed many many algorithm variants \cite{b2}. A basic version of the PSO algorithm works with a population (swarm) of possible solutions (particles). These particles move in the search space according to some simple formulas. The movements in the particles' search space are determined by their best-known position and by the best-known position of the entire swarm. As better positions are discovered, they will guide the swarm's movements. The process is repeated many times, so it is expected that a satisfactory solution will eventually be discovered, although this may not happen\cite{b3}.
