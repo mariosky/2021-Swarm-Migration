@@ -423,7 +423,8 @@ migrate to another swarm.
 % Add some information about how the experiments were performed, type
 % of machine, how much time they took ... -JJ
 
-Table 3 shows the different MSE obtained in the experimentation.
+Table 3 shows the different MSE obtained in the experimentation. % Also,
+% you need to comment these results JJ
 
 \begin{table}[h!tb]
     \centering
@@ -460,15 +461,28 @@ Table 3 shows the different MSE obtained in the experimentation.
 \hfill\break
 
 
-\subsection{Statistical test}
-We present the statistical tests below to compare the three methods applied in this work, comparing the two new methods with the original method and between them. In this case, we use a \(Z\) statistical test with an $\alpha$ of 0.5, giving a critical value to exceed 1.64; in Table 4, the comparison between the EvoSwarm method and the Chain method can be observed. Table 5 shows the comparison between EvoSwarm and the Hypercube method. Finally, Table 6 is the comparison between the methods and the Hypercube chain.\hfill \break
+\subsection{Statistical test} % This should not be a different
+                              % section. Statistical tests are always
+                              % needed - JJ
+We present the statistical tests below to compare the three methods
+applied in this work, comparing the two new methods with the original
+method and between them. In this case, we use a \(Z\) statistical test
+with an $\alpha$ of 0.5, giving a critical value to exceed 1.64; % meaning? - JJ
+in Table 4, the comparison between the EvoSwarm method and the Chain
+method can be observed. Table 5 shows the comparison between EvoSwarm
+and the Hypercube method. Finally, Table 6 is the comparison between
+the methods and the Hypercube chain.\hfill \break
+% You should simply show which comparisons are significant in the
+% previous table - JJ
 % Please add the following required packages to your document preamble:
 % \usepackage{booktabs}
 \begin{table}
 \caption{Statistical comparison for EvoSwarm vs Chain method, positive test results are in bold}
     \scalebox{0.99}{
 \begin{tabular}{|c|c|c|c|c|c|}
-\hline
+  \hline
+  % If the z critic value is always the same, there's no need to
+  % include it - JJ 
 Dimension & Function & EvoSwarm MSE & Chain MSE  & EvoSwarm vs Chain Z value & Z critic value \\
 \hline
 10        & 1        & 4.7861E-09   & 4.4579E-09 & 0.38385888                & 1.64           \\
@@ -522,7 +536,8 @@ Dimension & Function & EvoSwarm MSE & Hypercube MSE  & EvoSwarm vs Hypercube Z v
 20 & 18 & 2.533386188 & 2.559019459 & -0.0776709  & 1.64 \\
 20 & 21 & 0.901706552 & 0.395204608 & \textbf{2.23899811}  & 1.64 \\
 20 & 22 & 3.625232097 & 1.650088133 & \textbf{2.59133147}  & 1.64 \\
-\hline
+  \hline
+  % Best to present MSE +- StdDev, it's not so visual in different columns
 \end{tabular}}
 \end{table}
 
@@ -560,11 +575,22 @@ Dimension & Function & Chain MSE & Hypercube MSE  & Chain vs Hypercube Z value &
 \end{table}
 \hfill
 \break
+
+% There does not seem to be a big difference, and none at all between
+% the different technologies. You should comment on this, and why it
+% happens on these specific functions - JJ
+
 \section{Conclusions}
+
 In this research, we compared three communication methods between
 populations of a multi-swarm system to identify the variation in the
 result caused by these changes. However, the difference between most
-of the results is not very large. Nevertheless, there are scenarios in
+of the results is not very large.
+% Discussion should include why this happens, and why there are
+% differences in specific circumstances or functions. Also if there's
+% some change with the problem size (dimensions) - JJ
+
+Nevertheless, there are scenarios in
 which the change was quite relevant, so it is possible to say that the
 change in communication policies significantly impacts multi-swarm
 methods for continuous optimization. In the same way, we must take
@@ -582,12 +608,8 @@ specific scenarios.
 
 This paper has been supported in part by project DeepBio (TIN2017-85727-C4-2-P).
 
-\begin{thebibliography}{4}
 
 \printbibliography
-
-
-\end{thebibliography}
 
 
 \end{document}
