@@ -31,7 +31,7 @@
 
 
 \usepackage{url}
-\urldef{\mailsc}\path||    
+\urldef{\mailsc}\path||
 \newcommand{\keywords}[1]{\par\addvspace\baselineskip
 \noindent\keywordname\enspace\ignorespaces#1}
 
@@ -372,7 +372,8 @@ In order to run the optimization experiments, we selected ten functions from the
 
 The number given to each function comes from COCO. This means that any method using the benchmark can be compared against a great variety of optimization methods. The complete collection of functions, graphics, and equations can be reviewed in reference \cite{bbob}.
 
-\subsection{EvoSwarm communication topology}
+\subsection{EvoSwarm communication topology} % These sections are too
+                                % short and could be merged - JJ
 %diagrama maybe
 In the original communication policy, the architecture waited until a minimum of three populations have reach the migration component, then these populations were sent into a process that combine the best half of each one the anothers. For example, let us name the three populations A, B, and C, then a sort method is applied to each one. The sorted populations now are divided into halves in preparation for the merging process, in with 3 “new” populations are born, the first one has the best half of A and B, the second has the best of B and C,and the third has the best of A and C. The last step is the reinsertion of these new populations into a queue in which they will be retaken by the PSO algorithm.
 
@@ -400,11 +401,27 @@ This one is the most complicated topology presented in this paper. The name indi
 % \label{fig:example}
 % \end{figure}
 
-The structure resembles a cube, and in every one of its vertices is one population. One thing that stands immediately is the capital P because only four populations have it, and was made this discrepancy between the two groups to represent a division. In this algorithm, we divided the Hypercube into two dimensions. Moreover, depending on the iteration of the experiment, the exchange of solutions is restricted.
+The structure resembles a cube, and in every one of its vertices is
+one population. One thing that stands immediately is the capital P
+because only four populations have it, this discrepancy between the
+two groups was made to represent a division. In this algorithm, we
+divided the Hypercube into two dimensions. Moreover, depending on
+the % Are you sure about capitalizing hypercube? - JJ
+iteration of the experiment, the exchange of solutions is restricted.
 
-Every iteration of an experiment changes the mode in which the populations communicate with each other. For example, in the first iteration, the eight populations can only communicate with the others in the same dimension. In the second iteration, the opposite happens, allowing them to exchange information with a population outside that dimension.   With eight vertices, only two exchanges are allowed, and for the experiments on this paper, only the best 10\% of solutions migrate to another swarm. 
+Every iteration of an experiment changes the mode in which the
+populations communicate with each other. For example, in the first
+iteration, the eight populations can only communicate with the others
+in the same dimension. In the second iteration, the opposite happens,
+allowing them to exchange information with a population outside that
+dimension.   With eight vertices, only two exchanges are allowed, and
+for the experiments on this paper, only the best 10\% of solutions
+migrate to another swarm.
 
 \section{Experimental Results}
+
+% Add some information about how the experiments were performed, type
+% of machine, how much time they took ... -JJ
 
 Table 3 shows the different MSE obtained in the experimentation.
 
