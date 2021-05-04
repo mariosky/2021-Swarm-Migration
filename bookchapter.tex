@@ -119,7 +119,8 @@ University of Granada, Spain, \email{jmerelo@ugr.es}}
 
 Among the various strategies that have emerged in recent times for bio-inspired
 optimization algorithms, the creation of multiple populations working
-in parallel and (possibly) asynchronously has proven to be valuable \cite{a1}.
+in parallel and (possibly) asynchronously has proven to be valuable in 
+solving complex optimization problems \cite{a1}.
 % Las citas se ponen antes del punto - M 
 % Procurar no poner superlativos como 'the most'a menos que tengamos
 % los datos - M
@@ -130,7 +131,12 @@ populations, since it has been observed in various studies that the
 exchange of possible solutions helps to improve the performance of
 optimization algorithms \cite{a2}.
 % Aquí falta un parrafo que conecte con lo que sigue, por ejemplo: 
-Several distributed architectures have been proposed to manage the communication and parallel execution of these kind of algorithms, for example there is a similar approach by Scott Haberson et al using a multi-population parallel genetic algorithm for in depended evolution \cite{da1}.
+
+Several distributed architectures have been proposed to manage the communication
+and parallel execution of these kind of algorithms, for example there is a
+similar approach by Scott Haberson et al using a multi-population parallel
+genetic algorithm for in depended evolution \cite{da1}.
+
 % Aqui comenta algunos otros brevemente 
 % con referencias - M
 % Conector:
@@ -163,7 +169,10 @@ algorithm allowing a fair comparison with other communication
 methods. In this work, we use only a PSO algorithm to assess the
 difference this simple change has on this algorithm.
 
-This paper contains the following sections: The basic concepts used in this work are in Section 2. Section 3 contains the information regarding the proposed method. Section 4 presents experimental results, and in Section 5, the conclusions for this investigation.
+This paper contains the following sections: The basic concepts used in this work
+are in Section 2. Section 3 contains the information regarding the proposed
+method. Section 4 presents experimental results, and in Section 5, the
+conclusions for this investigation.
 
 \section{State of the Art}
 
@@ -177,22 +186,28 @@ This paper contains the following sections: The basic concepts used in this work
 % the problem domain - JJ
 
 %\subsection{Swarm Intelligence}
-“Swarm intelligence (SI) is the collective behavior of decentralized,
-self-organized, natural or artificial systems.” The expression was
-first brought up by Gerardo Beni and Jing Wang in 1989 in the context
-of robotic cellular systems \cite{b4}.
 
-SI systems are mostly made of a population of simple particles that
-interact with each other and with their environment at a local
-level. The inspiration to make this kind of system comes from nature,
-especially biological systems. Particles follow very simple rules for
-their interactions and these interactions lead to the creation of a
-global "smart" behavior \cite{b5}.
+%“Swarm intelligence (SI) is the collective behavior of decentralized,
+%self-organized, natural or artificial systems.” The expression was
+%first brought up by Gerardo Beni and Jing Wang in 1989 in the context
+%of robotic cellular systems \cite{b4}.
+
+%SI systems are mostly made of a population of simple particles that
+%interact with each other and with their environment at a local
+%level. The inspiration to make this kind of system comes from nature,
+%especially biological systems. Particles follow very simple rules for
+%their interactions and these interactions lead to the creation of a
+%global "smart" behavior \cite{b5}.
 % These paragraphs above could be suppressed - JJ
 
 %\subsection{PSO}
 % Agregar un párrafo que conecte con esto:
-Knowing that it is planned to work with different populations of swarms, the need to use an optimization algorithm that has an affinity with this technique and with swarm intelligence is generated. From what has been observed in countless works, some of them mentioned in this paper, PSO has great compatibility with the techniques that are intended to be used.
+
+%Knowing that it is planned to work with different populations of swarms, the
+%need to use an optimization algorithm that has an affinity with this technique
+%and with swarm intelligence is generated. From what has been observed in
+%countless works, some of them mentioned in this paper, PSO has great
+%compatibility with the techniques that are intended to be used.
 
 Particle Swarm Optimization (PSO) is an optimization algorithm
 inspired flocks of birds or schools
@@ -213,14 +228,17 @@ discovered, although this may not happen\cite{b3}.
 % The state of the art should be an exposition of what is the current
 % *state* of the problem that will be solved. - JJ
 
-\subsection{Multi-Swarm PSO}
+%\subsection{Multi-Swarm PSO}
 
 % Still no idea of the problem that is going to be solved, and why we
 % need multiple swarms. Also, it should go to the state of the art if
 % this is the focus of the paper - JJ
 
 Multi-swarm optimization is a variant of Particle Swarm Optimization
-(PSO) based on multiple swarms (or sub-swarm) instead of one. The basic flow in a multi-swarm optimization is that each sub-swarm focuses on a specific search space region. In contrast, a specific diversification method decides where and when to launch the sub-swarms. 
+(PSO) based on multiple swarms (or sub-swarm) instead of one. The basic flow in
+a multi-swarm optimization is that each sub-swarm focuses on a specific search
+space region. In contrast, a specific diversification method decides where and
+when to launch the sub-swarms.
 
 For example, Wave of Swarm of Particles \cite{b6} bases its
 diversification technique on the "collision" of particles. When the
@@ -235,7 +253,7 @@ order to find a local optimum, explorers are deployed to search for
 new regions promising to "keep going." % This should probably go to
                                 % state of the art - JJ
 
-In contrast to typical PSO swarms, sub-swarms are fed with some
+In contrast to typical PSO swarms, sub-swarms are fed with 
 information % you should qualify "some" - jj
 about previous swarms. These could be the positions and velocities instead of having their initial parameters to be randomly selected. In general, the development of multi-swarm systems creates a new path of design decisions that did not exist during the original development of PSO. These design decisions have been have well-established guidelines thanks to the numerous studies on the topic, for example, the use of non-random initial positions and initial velocities leads to better re-sults in multi-swarm systems, which is not the case for individual swarms \cite{b9}.
 
@@ -252,7 +270,14 @@ hybrid method. % The whole introduction should go to State of the art
 
 \subsection{Communication topologies in multi-swarm algorithms}
 
-Multi-population-based methods have often been analyzed and used to improve the optimization performance of nature-inspired optimization algorithms. Researchers often divide the original population into small sub-populations for some purposes, for example, solving large-scale optimization problems and dynamic optimization problems. Existing studies on multi-population optimization show that it integrates easily into various nature-inspired optimization algorithms, and often performs better than using single-population optimization algorithms including global reference functions and real-world applications \cite{b11}\cite{b12}.
+Multi-population-based methods have often been analyzed and used to improve the
+optimization performance of nature-inspired optimization algorithms. Researchers
+often divide the original population into small sub-populations for some
+purposes, for example, solving large-scale optimization problems and dynamic
+optimization problems. Existing studies on multi-population optimization show
+that it integrates easily into various nature-inspired optimization algorithms,
+and often performs better than using single-population optimization algorithms
+including global reference functions and real-world applications \cite{b11} \cite{b12}.
 
 Other investigations, reviews, and surveys on multi-population methods have also been published in recent years, in which multi-population concepts are described using other terms like  'parallel,' 'Cooperative,' 'co-evolution,' and 'islands.' Its multi-threaded and parallel processing features that significantly speed up deployment time \cite{b13}\cite{b14}.
 
@@ -306,22 +331,39 @@ allow different optimization algorithms % (See Figure \ref{fig:example}).
 % \end{figure}
 % Eliminated. It's in Spanish...
 
-It is worth mentioning that this architecture can be implemented using various computers in a network or using a virtualization tool, like in the case of this research using Docker. Here are some of the most important features that EvoSwarm brings to the user:
+It is worth mentioning that this architecture can be implemented using various
+computers in a network or using a virtualization tool, like in the case of this
+research using Docker. Here are some of the most important features that
+EvoSwarm brings to the user:
 
-\begin{itemize}
-    \item Fully capable of scalability, since more computers can be added to the network in order to manage a more significant workload.
-    \item Independence between processes, which means that any process in the structure is completely separated from the other ones allowing more work to be done at the same time.
+\begin{itemize} 
+  
+  \item Fully capable of scalability, since more computers can be added to the
+  network in order to manage a more significant workload.
+    
+    \item Independence between processes, which means that any process in the
+    structure is completely separated from the other ones allowing more work to
+    be done at the same time.
+    
     \item It is adaptable to any population-based optimizing algorithm.
 \end{itemize}
 
 
 \section{Proposed method}
 
-The proposed method consists of creating a variant of the architecture called EvoSwarm to observe any changes in performance. For this purpose, it is mandatory to be working with the same conditions as the original version. The only change made in this case was the communication policy between the populations of the multi-swarm PSO.
+The proposed method consists of creating a variant of the architecture called
+EvoSwarm to observe any changes in performance. For this purpose, it is
+mandatory to be working with the same conditions as the original version. The
+only change made in this case was the communication policy between the
+populations of the multi-swarm PSO.
 
-\subsection{PSO}
-%Aqui mover a como esta en tesis
-We implemented the software in Python; for the PSO algorithm, we use the Evolopy library \cite{b19}, as mention earlier in this paper, we use the same parameters for the PSO algorithm as the EvoSwarm paper (see Table 1).
+\subsection{PSO} 
+
+%Aqui mover a como esta en tesis We implemented the software in
+
+Python; for the PSO algorithm, we use the Evolopy library \cite{b19}, as mention
+earlier in this paper, we use the same parameters for the PSO algorithm as the
+EvoSwarm paper (see Table 1).
 
 \begin{table}[h!]
 \centering
@@ -340,8 +382,10 @@ C2 & 2 \\[0.5ex]
 \label{table:1}
 \end{table}
 
-\subsection{EvoSwarm}
-Continuing with the configuration of the experiments, Table 2 presents the parameters used in EvoSwarm; these are for the 3 cases presented in this paper. 
+\subsection{EvoSwarm} 
+
+Continuing with the configuration of the experiments, Table 2 presents the
+parameters used in EvoSwarm; these are for the 3 cases presented in this paper.
 
 \begin{table}[h]
 \centering
@@ -383,10 +427,26 @@ The number given to each function comes from COCO. This means that any method us
 \subsection{EvoSwarm communication topology} % These sections are too
                                 % short and could be merged - JJ
 %diagrama maybe
-In the original communication policy, the architecture waited until a minimum of three populations have reach the migration component, then these populations were sent into a process that combine the best half of each one the anothers. For example, let us name the three populations A, B, and C, then a sort method is applied to each one. The sorted populations now are divided into halves in preparation for the merging process, in with 3 “new” populations are born, the first one has the best half of A and B, the second has the best of B and C,and the third has the best of A and C. The last step is the reinsertion of these new populations into a queue in which they will be retaken by the PSO algorithm.
+
+In the original communication policy, the architecture waited until a minimum of
+three populations have reach the migration component, then these populations
+were sent into a process that combine the best half of each one the anothers.
+For example, let us name the three populations A, B, and C, then a sort method
+is applied to each one. The sorted populations now are divided into halves in
+preparation for the merging process, in with 3 “new” populations are born, the
+first one has the best half of A and B, the second has the best of B and C,and
+the third has the best of A and C. The last step is the reinsertion of these new
+populations into a queue in which they will be retaken by the PSO algorithm.
 
 \subsection{Chain communication topology}
-The first modification, in this case, is only to the merging process. To create a chained algorithm affect every three arriving populations will be sent into the migrations process, and like the original version, we sort the three populations. The modification consists in that the populations are only allowed to share a few members of the elite. In this case, 10. Individuals are carried into a chain structure in which a population can receive only one way of the structure and shares in another.
+
+The first modification, in this case, is only to the merging process. To create
+a chained algorithm affect every three arriving populations will be sent into
+the migrations process, and like the original version, we sort the three
+populations. The modification consists in that the populations are only allowed
+to share a few members of the elite. In this case, 10. Individuals are carried
+into a chain structure in which a population can receive only one way of the
+structure and shares in another.
 
 % \begin{figure}
 % \centering
@@ -397,9 +457,17 @@ The first modification, in this case, is only to the merging process. To create 
 % \end{figure}
 
 \subsection{Hypercube communication topology}
-The 2nd variation for the EvoSwarm structure is called a Hypercube; this one is based on a paper in which this topology was applied to solve a multi-reservoir of water using a multi-population algorithm \cite{b20}.  
 
-This one is the most complicated topology presented in this paper. The name indicates this method has a cubic structure and can only be operated with eight populations at the same time or more. For this paper, we only need eight populations. Once the algorithm gets filled with eight populations, the migrations algorithm needs to assign each one a place in the hypercube structure. Figure 3 it has shown the layout of the structure.
+The 2nd variation for the EvoSwarm structure is called a Hypercube; this one is
+based on a paper in which this topology was applied to solve a multi-reservoir
+of water using a multi-population algorithm \cite{b20}.  
+
+This one is the most complicated topology presented in this paper. The name
+indicates this method has a cubic structure and can only be operated with eight
+populations at the same time or more. For this paper, we only need eight
+populations. Once the algorithm gets filled with eight populations, the
+migrations algorithm needs to assign each one a place in the hypercube
+structure. Figure 3 it has shown the layout of the structure.
 
 % \begin{figure}
 % \centering
@@ -469,7 +537,7 @@ Table 3 shows the different MSE obtained in the experimentation. % Also,
 \hfill\break
 
 
-\subsection{Statistical test} % This should not be a different
+%\subsection{Statistical test} % This should not be a different
                               % section. Statistical tests are always
                               % needed - JJ
 We present the statistical tests below to compare the three methods
