@@ -40,14 +40,14 @@
 \mainmatter  % start of an individual contribution
 
 % first the title is needed
-\title{Application of a chain-like and a hypercube communication topology 
+\title{Application of a chain-like and a hypercube communication topologies 
 in a multi-swarm PSO algorithm applied to continuous optimization problems}
 % Los titulos no llevan punto al final - M
 % Maybe this is a bit too long? Also, it would be best to say *why*
 % you did this, instead of what you did - JJ
 
 % a short form should be given in case it is too long for the running head
-\titlerunning{José Guzmán, Mario Garcia}
+\titlerunning{Appli. of comm. topologies in multi-swarm PSO}
 
 % the name(s) of the author(s) follow(s) next
 %
@@ -83,19 +83,27 @@ University of Granada, Spain, \email{jmerelo@ugr.es}}
 
 \begin{abstract}
 
-In this paper, there will be a comparison of optimization policies regarding the
-change in communication topologies in a multi-population PSO, a
-variation of normal PSO that create various populations called swarms
-in order to improve certain aspects of the performance in the
-optimization algorithm that is working in a new event-based
-architecture. The comparison has been done based on continuous
-optimization for benchmark functions and was between the original
-algorithm made into this new architecture called EvoSwarm and a
-variant of this witch has applied a chain topology and a hypercubic
-topology as communication policy. Showing that in the majority of the
-functions evaluated, the chain topology  ended up winning using the
-MSE as reference. % Probably rewrite it. Why did you do it? Why did
+  Using multiple-swarm PSO is a technique used in recent years to help improve
+  the performance of nature-inspired optimization algorithms. A distributed PSO
+  algorithm can work in each swarm in parallel and also communicate particles
+  between them asynchronously. However, the design of these systems is not a
+  trivial task because many architectural options affect the exploration and
+  exploitation of the search space. In this paper, we focus on proposing and
+  comparing two communication policies regarding which swarms can communicate
+  with each other. These policies intend to limit the communication between
+  populations to increase exploration and avoid premature convergence. The
+  proposed policies are chain and hypercubic topologies. We implemented them
+  following an event-based cloud-native design. We compared the three options
+  using several continuous optimization benchmark functions to assess the
+  benefits of changing a communication topology. After the experiments, the
+  chain topology had a better performance using MSE as a metric.
+  
+  
+  % Probably rewrite it. Why did you do it? Why did
                   % you think it would work? - JJ
+ % Done - Mario 
+ % Edit at will - Mario
+                   
 
 \keywords{PSO, EvoSwarm, multi-swarm intelligence, communication topologies,
  chain algorithm, hypercube, multi-swarm PSO.}
