@@ -421,7 +421,11 @@ of solutions migrate to another swarm.
 
 % Add some information about how the experiments were performed, type
 % of machine, how much time they took ... -JJ
-The experiments where made in a single computer using a Ryzen 5 2600x and 24 gb of ram, using the tecnology of docker 10 virtual computers were created for the process. Each experiment was conducted separetly and the standar time to do one, is about 6 to 8 hours.
+
+The experiments where made in a single computer using a Ryzen 5 2600x and 24 gb
+of ram, using the tecnology of docker 10 virtual computers were created for the
+process. Each experiment was conducted separetly and the standar time to do one,
+is about 6 to 8 hours.
 
 Table 3 shows the different MSE obtained in the experimentation. % Also,
 % you need to comment these results JJ
@@ -434,26 +438,26 @@ Table 3 shows the different MSE obtained in the experimentation. % Also,
     \hline
      Dimensions & Function & EvoSwarm MSE & Chain MSE & Hypercube MSE & EvoSwarm Stdev & Chain Stdev & Hypercube Stdev \\ [0.5ex] 
     \hline\hline
-10	&	1	&	4.78611E-09	&	\textbf{4.45791E-09}	&	4.52861E-09	&	3.3503E-09	&	3.27217E-09	&	3.25265E-09	\\
-10	&	2	&	\textbf{3.83054E-09}	&	4.1792E-09	&	4.65155E-09	&	2.35352E-09	&	2.86765E-09	&	2.9481E-09	\\
-10	&	3	&	2.352927573	&	\textbf{0.537649443}	&	0.805637277	&	2.881847604	&	1.543574882	&	1.663900202	\\
-10	&	9	&	0.49249742	&	0.2527938	&	\textbf{0.229809004}	&	0.983944824	&	0.152990827	&	0.109927138	\\
-10	&	10	&	\textbf{250.1738327}	&	430.5420728	&	374.4359744	&	228.3598149	&	527.2651437	&	323.3050765	\\
-10	&	15	&	14.66500256	&	\textbf{12.05469416}	&	13.33777036	&	6.840266769	&	5.391630829	&	5.860112176	\\
+10	&	1	  &	4.78611E-09	          &	\textbf{4.45791E-09}	&	4.52861E-09	&	3.3503E-09	&	3.27217E-09	&	3.25265E-09	\\
+10	&	2	  &	\textbf{3.83054E-09}	&	4.1792E-09	&	4.65155E-09	&	2.35352E-09	&	2.86765E-09	&	2.9481E-09	\\
+10	&	3	  &	2.352927573	          &	 \underline{\textbf{0.537649443}}	&	\underline{0.805637277}	&	2.881847604	&	1.543574882	&	1.663900202	\\
+10	&	9	  &	0.49249742	          &	0.2527938	&	\textbf{0.229809004}	&	0.983944824	&	0.152990827	&	0.109927138	\\
+10	&	10	&	\underline{\textbf{250.1738327}}	&	430.5420728	&	374.4359744	&	228.3598149	&	527.2651437	&	323.3050765	\\
+10	&	15	&	14.66500256	          &	\underline{\textbf{12.05469416}}	&	13.33777036	&	6.840266769	&	5.391630829	&	5.860112176	\\
 10	&	17	&	0.0923583	&	\textbf{0.075762972}	&	0.087059177	&	0.16646265	&	0.155990531	&	0.17433065	\\
 10	&	18	&	0.524852914	&	0.506412719	&	\textbf{0.413659866}	&	0.633592264	&	0.467805944	&	0.382221237	\\
 10	&	21	&	0.329852279	&	0.237422927	&	\textbf{0.20667313}	&	0.621910649	&	0.481633605	&	0.390914491	\\
 10	&	22	&	0.692064149	&	\textbf{0.514782111}	&	0.57179096	&	0.577929599	&	0.719118705	&	0.650216016	\\
 20	&	1	&	0.03594249	&	5.55231E-09	&	\textbf{5.54663E-09}	&	0.196865099	&	2.9048E-09	&	2.52356E-09	\\
 20	&	2	&	5.64673E-09	&	5.49755E-09	&	\textbf{5.36566E-09}	&	2.31813E-09	&	2.54807E-09	&	2.98753E-09	\\
-20	&	3	&	12.082746	&	8.746638682	&	\textbf{7.874205319}	&	8.54691241	&	7.803681637	&	7.808562704	\\
+20	&	3	&	12.082746	&	8.746638682	&	\underline{\textbf{7.874205319}}	&	8.54691241	&	7.803681637	&	7.808562704	\\
 20	&	9	&	\textbf{11.10349719}	&	11.37025195	&	11.49485451	&	1.483577297	&	2.321860001	&	1.0945346	\\
 20	&	10	&	4994.888993	&	\textbf{4472.971044}	&	5805.968994	&	4632.673198	&	2316.255771	&	5624.624998	\\
 20	&	15	&	58.88102471	&	\textbf{53.54574023}	&	56.38870042	&	20.44460373	&	16.99626952	&	20.85090795	\\
 20	&	17	&	0.788958338	&	0.766878619	&	\textbf{0.764906251}	&	0.43605249	&	0.434587453	&	0.487783929	\\
 20	&	18	&	2.533386188	&	\textbf{2.255266883}	&	2.559019459	&	1.013613907	&	0.930554736	&	1.496684622	\\
-20	&	21	&	0.901706552	&	\textbf{0.39256696}	&	0.395204608	&	1.040801093	&	0.827425128	&	0.672288795	\\
-20	&	22	&	3.625232097	&	\textbf{1.518287857}	&	1.650088133	&	3.97000465	&	1.64832496	&	1.291540717	\\
+20	&	21	&	0.901706552	&	\underline{\textbf{0.39256696}}	&	\underline{0.395204608}	&	1.040801093	&	0.827425128	&	0.672288795	\\
+20	&	22	&	3.625232097	&	\underline{\textbf{1.518287857}}	&	\underline{1.650088133}	&	3.97000465	&	1.64832496	&	1.291540717	\\
 
     \hline
     \end{tabular}}
