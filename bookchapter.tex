@@ -299,9 +299,9 @@ populations of the multi-swarm PSO.
 
 %Aqui mover a como esta en tesis We implemented the software in
 
-We implemented the migration policies in Python; for the PSO algorithm, we use
-the Evolopy library \cite{b19}, as mentioned earlier in this paper, we use the
-same parameters for the PSO algorithm as the EvoSwarm paper (see Table 1).
+We implemented the migration policies in Python; for the PSO algorithm, we use the Evolopy library \cite{b19}, as mentioned
+earlier in this paper, we use the same parameters for the PSO algorithm as the
+EvoSwarm paper (see Table 1).
 
 \begin{table}[h!]
 \centering
@@ -419,27 +419,12 @@ of solutions migrate to another swarm.
 \section{Experimental Results}
 
 
-% Add some information about how the experiments were performed, type 
-% of machine, how much time they took ... -JJ 
+% Add some information about how the experiments were performed, type
+% of machine, how much time they took ... -JJ
+The experiments where made in a single computer using a Ryzen 5 2600x and 24 gb of ram, using the tecnology of docker 10 virtual computers were created for the process. Each experiment was conducted separetly and the standar time to do one, is about 6 to 8 hours.
 
-We run the experiments in a single computer using a Ryzen 5 2600x CPU and 24 GB
-of ram in Windows 10 Professional 64 bits, using Docker Desktop version 2.5,
-running ten containers. We used Python version 3.5.7. We conducted each
-experiment separately 30 times. The time required for each run took about 7
-hours. In these experiments, we are not interested in the total time required to
-find a solution as the changes in the algorithm did not affect the running time.
-In this case, we are focused on the MSE of the best solution found with the same
-number of function evaluations.
-
-Table 3 shows the different MSE obtained in the experimentation.  
-
-In ten dimensions, there are three functions in which the original topology
-gives better results than the other two options. However, once we reach twenty
-dimensions, the original topology obtains the worst results. Overall the chain
-topology gives a better MSE in 20 dimensions, only having two cases with a lower
-MSE than the hypercube configuration. We can see that the standard deviation of
-the MSE obtained by the three options only varies in few cases.
-% Also, % you need to comment these results JJ
+Table 3 shows the different MSE obtained in the experimentation. % Also,
+% you need to comment these results JJ
 
 \begin{table}[h!tb]
     \centering
@@ -449,26 +434,27 @@ the MSE obtained by the three options only varies in few cases.
     \hline
      Dimensions & Function & EvoSwarm MSE & Chain MSE & Hypercube MSE & EvoSwarm Stdev & Chain Stdev & Hypercube Stdev \\ [0.5ex] 
     \hline\hline
-    10 & 1	& \textbf{3.73447E-09} &	4.43163E-09 & 4.31567E-09 & 2.34E-09 & 2.68525E-09 & 3.10095E-09 \\ 
-    10 & 2 & \textbf{3.78687E-09} & 4.88483E-09 & 3.95527E-09 & 2.84285E-09 & 2.46615E-09 & 2.95704E-09\\
-    10 & 3 & 0.795723668 & \textbf{0.066330607} & 0.736180347 & 1.720290002 & 0.252429203 & 2.09770153 \\
-    10 & 9 & 0.317521615 & \textbf{0.291698111} & 0.495606846 & 0.221999486 & 0.133724951 & 0.992888643 \\
-    10 & 10 & 385.5382883 & \textbf{368.3836667} & 504.1392548 & 399.9278681 & 453.6655356 & 558.1741402 \\
-    10 & 15 & 15.76249501 & \textbf{12.76554083} & 13.58271757 & 6.088547227 & 4.814606813 & 6.470316492 \\
-    10 & 17 & \textbf{0.068348159} & 0.089892078 & 0.108848139 & 0.097958037 & 0.203665048 & 0.188877178 \\
-    10 & 18 & 0.361780116 & \textbf{0.308286435} & 0.536340776 & 0.307789471 &0.364641853 & 0.53188395 \\
-    10 & 21 & 0.241362711 & 0.330200323 & \textbf{0.129516888} & 0.518278881 & 0.588559758 & 0.343623139 \\
-    10 & 22 & 0.58421438 & \textbf{0.337485965} & 0.947592035 & 0.698924145 & 0.614376298 & 1.092855278 \\
-    20 & 1 & 5.5855E-09 & \textbf{5.29107E-09} & 5.60977E-09 & 2.54598E-09 & 3.08721E-09 & 2.78851E-09 \\
-    20 & 2 & 0.70300253 & 2.214098553 & \textbf{5.51067E-09} & 3.850503404 & 12.12711719 & 2.43854E-09 \\
-    20 & 3 & 8.506782382 & \textbf{6.523271752} & 6.566336254 & 7.91517587 & 6.962162793 & 6.445378042 \\
-    20 & 9 & 11.75981164 & \textbf{11.28483752} & 11.54803115 & 1.257101321 & 1.070210208 & 1.150081504 \\
-    20 & 10 & 5154.23155 & \textbf{4194.776213} & 4928.296717 & 4024.704045 & 3326.837717 & 4838.931553 \\
-    20 & 15 & 57.76524461 & \textbf{55.55811032} & 58.12969092 & 16.78744293 & 17.2761844 & 13.78413645 \\
-    20 & 17 & 0.807747361 & \textbf{0.65407833} & 0.87077806 & 0.377015722 & 0.323050832 & 0.450119262 \\
-    20 & 18 & 2.648213694 & \textbf{2.136768786} & 2.51764207 & 1.402620032 & 0.898650887 & 1.195657371 \\
-    20 & 21 & 0.624442455 & 0.2262255 & \textbf{0.2041556} & 0.903817073 & 0.486727692 & 0.513631785 \\
-    20 & 22 & 2.030148903 & \textbf{1.578348414} & 1.915845972 & 1.821498605 & 1.638408845 & 1.869210661\\
+10	&	1	&	4.78611E-09	&	\textbf{4.45791E-09}	&	4.52861E-09	&	3.3503E-09	&	3.27217E-09	&	3.25265E-09	\\
+10	&	2	&	\textbf{3.83054E-09}	&	4.1792E-09	&	4.65155E-09	&	2.35352E-09	&	2.86765E-09	&	2.9481E-09	\\
+10	&	3	&	2.352927573	&	\textbf{0.537649443}	&	0.805637277	&	2.881847604	&	1.543574882	&	1.663900202	\\
+10	&	9	&	0.49249742	&	0.2527938	&	\textbf{0.229809004}	&	0.983944824	&	0.152990827	&	0.109927138	\\
+10	&	10	&	\textbf{250.1738327}	&	430.5420728	&	374.4359744	&	228.3598149	&	527.2651437	&	323.3050765	\\
+10	&	15	&	14.66500256	&	\textbf{12.05469416}	&	13.33777036	&	6.840266769	&	5.391630829	&	5.860112176	\\
+10	&	17	&	0.0923583	&	\textbf{0.075762972}	&	0.087059177	&	0.16646265	&	0.155990531	&	0.17433065	\\
+10	&	18	&	0.524852914	&	0.506412719	&	\textbf{0.413659866}	&	0.633592264	&	0.467805944	&	0.382221237	\\
+10	&	21	&	0.329852279	&	0.237422927	&	\textbf{0.20667313}	&	0.621910649	&	0.481633605	&	0.390914491	\\
+10	&	22	&	0.692064149	&	\textbf{0.514782111}	&	0.57179096	&	0.577929599	&	0.719118705	&	0.650216016	\\
+20	&	1	&	0.03594249	&	5.55231E-09	&	\textbf{5.54663E-09}	&	0.196865099	&	2.9048E-09	&	2.52356E-09	\\
+20	&	2	&	5.64673E-09	&	5.49755E-09	&	\textbf{5.36566E-09}	&	2.31813E-09	&	2.54807E-09	&	2.98753E-09	\\
+20	&	3	&	12.082746	&	8.746638682	&	\textbf{7.874205319}	&	8.54691241	&	7.803681637	&	7.808562704	\\
+20	&	9	&	\textbf{11.10349719}	&	11.37025195	&	11.49485451	&	1.483577297	&	2.321860001	&	1.0945346	\\
+20	&	10	&	4994.888993	&	\textbf{4472.971044}	&	5805.968994	&	4632.673198	&	2316.255771	&	5624.624998	\\
+20	&	15	&	58.88102471	&	\textbf{53.54574023}	&	56.38870042	&	20.44460373	&	16.99626952	&	20.85090795	\\
+20	&	17	&	0.788958338	&	0.766878619	&	\textbf{0.764906251}	&	0.43605249	&	0.434587453	&	0.487783929	\\
+20	&	18	&	2.533386188	&	\textbf{2.255266883}	&	2.559019459	&	1.013613907	&	0.930554736	&	1.496684622	\\
+20	&	21	&	0.901706552	&	\textbf{0.39256696}	&	0.395204608	&	1.040801093	&	0.827425128	&	0.672288795	\\
+20	&	22	&	3.625232097	&	\textbf{1.518287857}	&	1.650088133	&	3.97000465	&	1.64832496	&	1.291540717	\\
+
     \hline
     \end{tabular}}
     \label{tab:my_label}
@@ -500,7 +486,7 @@ the methods and the Hypercube chain.\hfill \break
   \hline
   % If the z critic value is always the same, there's no need to
   % include it - JJ 
-Dimension & Function & EvoSwarm MSE & Chain MSE  & EvoSwarm vs Chain Z value \\
+Dimension & Function & EvoSwarm MSE & Chain MSE  & EvoSwarm vs Chain Z value & Z critic value \\
 \hline
 10        & 1        & 4.7861E-09   & 4.4579E-09 & 0.38385888                    \\
 10        & 2        & 3.8305E-09   & 4.1792E-09 & -0.51477671                   \\
@@ -531,7 +517,7 @@ Dimension & Function & EvoSwarm MSE & Chain MSE  & EvoSwarm vs Chain Z value \\
     \scalebox{0.90}{
 \begin{tabular}{|c|c|c|c|c|c|}
 \hline
-Dimension & Function & EvoSwarm MSE & Hypercube MSE  & EvoSwarm vs Hypercube Z value \\
+Dimension & Function & EvoSwarm MSE & Hypercube MSE  & EvoSwarm vs Hypercube Z value & Z critic value \\
 \hline
 10 & 1  & 4.78611E-09 & 4.52861E-09 & 0.30205024 \\
 10 & 2  & 3.83054E-09 & 4.65155E-09 & -1.19206785 \\
@@ -565,7 +551,7 @@ Dimension & Function & EvoSwarm MSE & Hypercube MSE  & EvoSwarm vs Hypercube Z v
     \scalebox{0.99}{
 \begin{tabular}{|c|c|c|c|c|c|}
 \hline
-Dimension & Function & Chain MSE & Hypercube MSE  & Chain vs Hypercube Z value\\
+Dimension & Function & Chain MSE & Hypercube MSE  & Chain vs Hypercube Z value & Z critic value \\
 \hline
 10 & 1  & 4.4579E-09 & 4.5286E-09 & -0.08393014  \\
 10 & 2  & 4.1792E-09 & 4.6515E-09 & -0.62905414  \\
