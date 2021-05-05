@@ -299,9 +299,9 @@ populations of the multi-swarm PSO.
 
 %Aqui mover a como esta en tesis We implemented the software in
 
-We implemented the migration policies in Python; for the PSO algorithm, we use the Evolopy library \cite{b19}, as mentioned
-earlier in this paper, we use the same parameters for the PSO algorithm as the
-EvoSwarm paper (see Table 1).
+We implemented the migration policies in Python; for the PSO algorithm, we use
+the Evolopy library \cite{b19}, as mentioned earlier in this paper, we use the
+same parameters for the PSO algorithm as the EvoSwarm paper (see Table 1).
 
 \begin{table}[h!]
 \centering
@@ -419,12 +419,27 @@ of solutions migrate to another swarm.
 \section{Experimental Results}
 
 
-% Add some information about how the experiments were performed, type
-% of machine, how much time they took ... -JJ
-The experiments where made in a single computer using a Ryzen 5 2600x and 24 gb of ram, using the tecnology of docker 10 virtual computers were created for the process. Each experiment was conducted separetly and the standar time to do one, is about 6 to 8 hours.
+% Add some information about how the experiments were performed, type 
+% of machine, how much time they took ... -JJ 
 
-Table 3 shows the different MSE obtained in the experimentation. % Also,
-% you need to comment these results JJ
+We run the experiments in a single computer using a Ryzen 5 2600x CPU and 24 GB
+of ram in Windows 10 Professional 64 bits, using Docker Desktop version 2.5,
+running ten containers. We used Python version 3.5.7. We conducted each
+experiment separately 30 times. The time required for each run took about 7
+hours. In these experiments, we are not interested in the total time required to
+find a solution as the changes in the algorithm did not affect the running time.
+In this case, we are focused on the MSE of the best solution found with the same
+number of function evaluations.
+
+Table 3 shows the different MSE obtained in the experimentation.  
+
+In ten dimensions, there are three functions in which the original topology
+gives better results than the other two options. However, once we reach twenty
+dimensions, the original topology obtains the worst results. Overall the chain
+topology gives a better MSE in 20 dimensions, only having two cases with a lower
+MSE than the hypercube configuration. We can see that the standard deviation of
+the MSE obtained by the three options only varies in few cases.
+% Also, % you need to comment these results JJ
 
 \begin{table}[h!tb]
     \centering
@@ -485,7 +500,7 @@ the methods and the Hypercube chain.\hfill \break
   \hline
   % If the z critic value is always the same, there's no need to
   % include it - JJ 
-Dimension & Function & EvoSwarm MSE & Chain MSE  & EvoSwarm vs Chain Z value & Z critic value \\
+Dimension & Function & EvoSwarm MSE & Chain MSE  & EvoSwarm vs Chain Z value \\
 \hline
 10        & 1        & 4.7861E-09   & 4.4579E-09 & 0.38385888                    \\
 10        & 2        & 3.8305E-09   & 4.1792E-09 & -0.51477671                   \\
@@ -516,7 +531,7 @@ Dimension & Function & EvoSwarm MSE & Chain MSE  & EvoSwarm vs Chain Z value & Z
     \scalebox{0.90}{
 \begin{tabular}{|c|c|c|c|c|c|}
 \hline
-Dimension & Function & EvoSwarm MSE & Hypercube MSE  & EvoSwarm vs Hypercube Z value & Z critic value \\
+Dimension & Function & EvoSwarm MSE & Hypercube MSE  & EvoSwarm vs Hypercube Z value \\
 \hline
 10 & 1  & 4.78611E-09 & 4.52861E-09 & 0.30205024 \\
 10 & 2  & 3.83054E-09 & 4.65155E-09 & -1.19206785 \\
@@ -550,7 +565,7 @@ Dimension & Function & EvoSwarm MSE & Hypercube MSE  & EvoSwarm vs Hypercube Z v
     \scalebox{0.99}{
 \begin{tabular}{|c|c|c|c|c|c|}
 \hline
-Dimension & Function & Chain MSE & Hypercube MSE  & Chain vs Hypercube Z value & Z critic value \\
+Dimension & Function & Chain MSE & Hypercube MSE  & Chain vs Hypercube Z value\\
 \hline
 10 & 1  & 4.4579E-09 & 4.5286E-09 & -0.08393014  \\
 10 & 2  & 4.1792E-09 & 4.6515E-09 & -0.62905414  \\
