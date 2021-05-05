@@ -121,97 +121,53 @@ Among the various strategies that have emerged in recent times for bio-inspired
 optimization algorithms, the creation of multiple populations working
 in parallel and (possibly) asynchronously has proven to be valuable in 
 solving complex optimization problems \cite{a1}.
-% Las citas se ponen antes del punto - M 
-% Procurar no poner superlativos como 'the most'a menos que tengamos
-% los datos - M
-% Anyway, you should state the problem and context first, not what you
-% are going to do. Also, valuable for what kind of problems? - JJ
+Researchers often divide the original population into small sub-populations for some
+purposes, for example, solving large-scale optimization problems and dynamic
+optimization problems. Existing studies on multi-population optimization show
+that it integrates easily into various nature-inspired optimization algorithms,
+and often performs better than using single-population optimization algorithms
+including global reference functions and real-world applications \cite{b11} \cite{b12}.
+Other investigations, reviews, and surveys on multi-population methods have also
+been published in recent years, in which multi-population concepts are described
+using other terms like 'parallel,' 'Cooperative,' 'co-evolution,' and 'islands.'
+Its multi-threaded and parallel processing features that significantly speed up
+deployment time \cite{b13} \cite{b14}.
+
 One of the critical points in this technique is communication between
 populations, since it has been observed in various studies that the
 exchange of possible solutions helps to improve the performance of
-optimization algorithms \cite{a2}.
-% Aquí falta un parrafo que conecte con lo que sigue, por ejemplo: 
+optimization algorithms \cite{a2}. The following four parameters
+control communication between sub-populations:
+
+\begin{itemize}
+    \item A communication speed that defines the number of solutions in a sub-population to share with other sub-populations.
+    \item A communication policy that determines which solutions should be replaced by those of other sub-populations.
+    \item A communication interval that establishes the frequency to execute the communication.
+    \item A connection topology that defines how to connect sub-populations.
+\end{itemize}
 
 Several distributed architectures have been proposed to manage the communication
 and parallel execution of these kind of algorithms, for example there is a
-similar approach by Scott Haberson et al using a multi-population parallel
-genetic algorithm for in depended evolution \cite{da1}.
+similar approach by Scott Haberson et al. using a multi-population parallel
+genetic algorithm for independent evolution \cite{da1}. 
 
-% Aqui comenta algunos otros brevemente 
-% con referencias - M
-% Conector:
-Recently, there is an interest in cloud-native, event-based architectures
-suitable to run locally on a personal computer or in a cloud platform
-service.
-%% Ahora si:
-An event-based architecture uses events to trigger and communicate
-between services and processes. An event is a state change or an
-update, like an order placed in a food delivery application. Events
-can either carry the state (the item purchased, its price, and a
-delivery address) or be just identifiers (a notification that an order
-was shipped). Using an event-based architecture, we intend to carry
-out a series of experiments to analyze the effect of changing the
-communication topology in a multi-population optimization algorithm's
-performance. Using this type of architecture with a multi-swarm
-optimization algorithm is a new approach. There is an opportunity to
-find a substantial variation in the performance of such an
-optimization algorithm by changing the way the various swarms
-communicate to exchange information.
-
-% You should say something about topologies and their influence on the
-% final result. Why chain? Why hypercube? If topology is the focus,
-% different options should be checked - JJ
-In this paper, we focus our efforts on the specific case of using a
-chain and a hypercube topology in this new architecture. We chose
+In this paper, we propose the two communication topologies to be implemented in a 
+even-based distributed multi-swarm Particle Swarm Optimization (PSO) algorithm.
+These comminication topologies follow a chain and a hypercube structure on a milti-swarm. We chose
 these topologies for their ability to be adapted to the architecture
 mentioned above. They can work without altering the optimization
 algorithm allowing a fair comparison with other communication
-methods. In this work, we use only a PSO algorithm to assess the
-difference this simple change has on this algorithm.
+methods. 
 
-This paper contains the following sections: The basic concepts used in this work
-are in Section 2. Section 3 contains the information regarding the proposed
-method. Section 4 presents experimental results, and in Section 5, the
-conclusions for this investigation.
+This paper contains the following sections: We present state-of-the-art on
+multi-swarm optimization in Section 2. In Section 3, we present the topologies,
+and in Section 4, we present experimental setup and results, Furthermore,
+Section 5 presents the conclusions for this work.
 
 \section{State of the Art}
 
-% Tengo dudas de esta sección en un paper de congreso - M 
-% Mejor poner aquí el State of the Art, los otros tipos de
-% Multipoblación 
-% Ya viendola bien, le podemos poner de nombre State of the Art 
-% en lugar the basic concepts - M
-% The state of the art refers to different methods *solving the same
-% problem* and will be used to compare against. You need to qualify
-% the problem domain - JJ
-
-%\subsection{Swarm Intelligence}
-
-%“Swarm intelligence (SI) is the collective behavior of decentralized,
-%self-organized, natural or artificial systems.” The expression was
-%first brought up by Gerardo Beni and Jing Wang in 1989 in the context
-%of robotic cellular systems \cite{b4}.
-
-%SI systems are mostly made of a population of simple particles that
-%interact with each other and with their environment at a local
-%level. The inspiration to make this kind of system comes from nature,
-%especially biological systems. Particles follow very simple rules for
-%their interactions and these interactions lead to the creation of a
-%global "smart" behavior \cite{b5}.
-% These paragraphs above could be suppressed - JJ
-
-%\subsection{PSO}
-% Agregar un párrafo que conecte con esto:
-
-%Knowing that it is planned to work with different populations of swarms, the
-%need to use an optimization algorithm that has an affinity with this technique
-%and with swarm intelligence is generated. From what has been observed in
-%countless works, some of them mentioned in this paper, PSO has great
-%compatibility with the techniques that are intended to be used.
-
 Particle Swarm Optimization (PSO) is an optimization algorithm
-inspired flocks of birds or schools
-of fish. Since it was introduced in 1995 by  J. Kennedy and
+inspired flocks of birds or schools of fish. Since it was introduced in 1995 by  J. Kennedy and
 R. Eberhar, it has undergone several improvements \cite{b1}. % pon el nombre del autor - M -j
 Since then, researchers have created different versions, which aimed at different
 purposes, developed new applications in many areas, published theoretical
@@ -225,14 +181,6 @@ of the entire swarm. As better positions are discovered, they will
 guide the swarm's movements. The process is repeated many times, so it
 is expected that a satisfactory solution will eventually be
 discovered, although this may not happen\cite{b3}.
-% The state of the art should be an exposition of what is the current
-% *state* of the problem that will be solved. - JJ
-
-%\subsection{Multi-Swarm PSO}
-
-% Still no idea of the problem that is going to be solved, and why we
-% need multiple swarms. Also, it should go to the state of the art if
-% this is the focus of the paper - JJ
 
 Multi-swarm optimization is a variant of Particle Swarm Optimization
 (PSO) based on multiple swarms (or sub-swarm) instead of one. The basic flow in
@@ -250,12 +198,17 @@ iteration of swarms are started with particles from the previous
 one. Locust swarms \cite{b8} are founded on a "devour and go" strategy
 after a sub-swarm "devours" a small fraction of the search space. In
 order to find a local optimum, explorers are deployed to search for
-new regions promising to "keep going." % This should probably go to
-                                % state of the art - JJ
+new regions promising to "keep going." 
 
-In contrast to typical PSO swarms, sub-swarms are fed with 
-information % you should qualify "some" - jj
-about previous swarms. These could be the positions and velocities instead of having their initial parameters to be randomly selected. In general, the development of multi-swarm systems creates a new path of design decisions that did not exist during the original development of PSO. These design decisions have been have well-established guidelines thanks to the numerous studies on the topic, for example, the use of non-random initial positions and initial velocities leads to better re-sults in multi-swarm systems, which is not the case for individual swarms \cite{b9}.
+In contrast to typical PSO swarms, sub-swarms are fed with information about
+previous swarms. These could be the positions and velocities instead of having
+their initial parameters to be randomly selected. In general, the development of
+multi-swarm systems creates a new path of design decisions that did not exist
+during the original development of PSO. These design decisions have been have
+well-established guidelines thanks to the numerous studies on the topic, for
+example, the use of non-random initial positions and initial velocities leads to
+better re-sults in multi-swarm systems, which is not the case for individual
+swarms \cite{b9}.
 
 Some of these decisions can be reached by relatively independent
 subcomponents that allow different optimization techniques to be
@@ -263,35 +216,8 @@ tested. For example, the multi-swarm system UMDA-PSO \cite{b10}
 combines elements of particle swarm optimization, distribution
 estimation algorithm, and differential evolution in a multi-swarm
 hybrid method. % The whole introduction should go to State of the art
-               % - JJ
-
-
-
-
-\subsection{Communication topologies in multi-swarm algorithms}
-
-Multi-population-based methods have often been analyzed and used to improve the
-optimization performance of nature-inspired optimization algorithms. Researchers
-often divide the original population into small sub-populations for some
-purposes, for example, solving large-scale optimization problems and dynamic
-optimization problems. Existing studies on multi-population optimization show
-that it integrates easily into various nature-inspired optimization algorithms,
-and often performs better than using single-population optimization algorithms
-including global reference functions and real-world applications \cite{b11} \cite{b12}.
-
-Other investigations, reviews, and surveys on multi-population methods have also been published in recent years, in which multi-population concepts are described using other terms like  'parallel,' 'Cooperative,' 'co-evolution,' and 'islands.' Its multi-threaded and parallel processing features that significantly speed up deployment time \cite{b13}\cite{b14}.
-
-Based on the previous information, another problem is born, and it is how to handle communication between sub-populations. The following four parameters control communication between sub-populations: 
-\begin{itemize}
-    \item A communication speed that defines the number of solutions in a sub-population to share with other sub-populations.
-    \item A communication policy that determines which solutions should be replaced by those of other sub-populations.
-    \item A communication interval that establishes the frequency to execute the communication.
-    \item A connection topology that defines how to connect sub-populations.
-
-      % This should go to the introduction. - JJ
-      
-\end{itemize}
-
+               % - JJ 
+               % This is the SoA - M
 There have been some papers focused in optimizing the communication
 between swarms, for example the survey in reference \cite{b15} has a
 collection of different investigations around this subject. For
@@ -300,20 +226,21 @@ change the behavior of multiple cooperating swarms, these factors
 included the communication strategy used and the number swarms. The
 experimental results demonstrated that a circular topology
 communication strategy has an overall better performance than those
-that simple share the global best of all the swarms\cite{b16}. % State
-                                % of the art should be the best place
-                                % for this - JJ
+that simple share the global best of all the swarms\cite{b16}. 
 
 Another example and the source of inspiration for this paper, is one
 of Li and Zeng, who presented a multi-population agent based
 co-genetic algorithm with a chain-like structure for parallel global
 numerical optimization, where a close chain-like connection structure,
 a cycle chain-like connection structure and a dynamic neighborhood
-were used to improve the parallel optimization\cite{b17}. % Definitely
-                                % state of the art - JJ
+were used to improve the parallel optimization\cite{b17}. 
+
+In the next section, we present two variants of communication topologies,
+to be used in an event-based architecture for the implementation of 
+distributed population-based optimization algorithms.
 
 
-\subsection{EvoSwarm}
+\section{Proposed method}
 
 EvoSwarm is based around a structure of queues that are ready to
 receive and send messages across a network of individual computers
@@ -349,7 +276,6 @@ EvoSwarm brings to the user:
 \end{itemize}
 
 
-\section{Proposed method}
 
 The proposed method consists of creating a variant of the architecture called
 EvoSwarm to observe any changes in performance. For this purpose, it is
