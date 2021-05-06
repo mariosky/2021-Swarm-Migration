@@ -129,7 +129,7 @@ and often performs better than using single-population optimization algorithms
 including global reference functions and real-world applications \cite{b11} \cite{b12}.
 Other investigations, reviews, and surveys on multi-population methods have also
 been published in recent years, in which multi-population concepts are described
-using other terms like 'parallel,' 'Cooperative,' 'co-evolution,' and 'islands.'
+using other terms like parallel, cooperative, co-evolution, and islands.
 Its multi-threaded and parallel processing features that significantly speed up
 deployment time \cite{b13} \cite{b14}.
 
@@ -160,8 +160,9 @@ algorithm allowing a fair comparison with other communication
 methods. 
 
 This paper contains the following sections: We present state-of-the-art on
-multi-swarm optimization in Section 2. In Section 3, we present the topologies,
-and in Section 4, we present experimental setup and results, Furthermore,
+multi-swarm optimization in Section 2. In Section 3, we present two variants of communication topologies,
+to be used in an event-based architecture we also present in the section. In Section 4, 
+we describe the experimental setup and results, Furthermore,
 Section 5 presents the conclusions for this work.
 
 \section{State of the Art}
@@ -189,16 +190,16 @@ space region. In contrast, a specific diversification method decides where and
 when to launch the sub-swarms.
 
 For example, Wave of Swarm of Particles \cite{b6} bases its
-diversification technique on the "collision" of particles. When the
+diversification technique on the ``collision'' of particles. When the
 particles are close to each other, they are sent into new sub-swarms,
 preventing complete convergence. The Dynamic Multi-Swarm-Particle
 Swarm Optimizer\cite{b7} regroups the particles from the sub-swarms
 (if they have converged) into new sub-swarms periodically, so the new
 iteration of swarms are started with particles from the previous
-one. Locust swarms \cite{b8} are founded on a "devour and go" strategy
-after a sub-swarm "devours" a small fraction of the search space. In
+one. Locust swarms \cite{b8} are founded on a ``devour and go'' strategy
+after a sub-swarm ``devours'' a small fraction of the search space. In
 order to find a local optimum, explorers are deployed to search for
-new regions promising to "keep going." 
+new regions promising to ``keep going.''
 
 In contrast to typical PSO swarms, sub-swarms are fed with information about
 previous swarms. These could be the positions and velocities instead of having
@@ -252,6 +253,7 @@ approach. Therefore, there is an opportunity to find a substantial variation in
 the performance of such an optimization algorithm by changing the way the
 various swarms communicate to exchange information.
 
+\subsection{EvoSwarm} 
 First, we briefly present the overall architecture of EvoSwarm, the 
 platform in which we implemented the distributed algorithm. 
 
@@ -292,16 +294,60 @@ EvoSwarm brings to the user:
     \item It is adaptable to any population-based optimizing algorithm.
 \end{itemize}
 
-The only change made to the original version of EvoSwarm \cite{b18} was the communication policy between the
-populations of the multi-swarm PSO.
+The only change made to the original version of EvoSwarm \cite{b18} was the
+communication policy between the populations of the multi-swarm PSO.
 
-%\subsection{PSO} 
+\subsection{Proposed communication topologies for EvoSwarm} 
 
-%Aqui mover a como esta en tesis We implemented the software in
+In the original communication policy, the architecture waited until a minimum of
+three populations reached the migration component. These populations are sent to
+a process that combines the best half of each one with the others. For example,
+let us name the three populations A, B, and C, then a sort method is applied to
+each one (based on the quality of the solution). The sorted populations are now
+divided into halves in preparation for the merging process, now, with three new
+populations, the first one has the best half of A and B, the second has the best
+of B and C, and the third has the best of A and C. The last step is reinserting
+these new populations into a queue from which the PSO processes will retake
+them.
 
-We implemented the migration policies in Python; for the PSO algorithm, we use the Evolopy library \cite{b19}, as mentioned
-earlier in this paper, we use the same parameters for the PSO algorithm as the
-EvoSwarm paper (see Table 1).
+The first modification, in this case, is only on the merging process. To create
+a chained algorithm that affects every three arriving populations, we sort the
+three populations. The modification consists in that the populations are only
+allowed to share a few members of the elite. In this case, 10. Individuals are
+carried into a chain structure in which a population can receive only one way of
+the structure and shares in another.
+
+The 2nd variation for the EvoSwarm structure is a hypercube; we based this one
+on a paper in which this topology was applied to solve a multi-reservoir of
+water using a multi-population algorithm \cite{b20}. The name indicates this
+method has a cubic structure and can only function with eight populations or
+more. For this paper, we only need eight populations. Once the algorithm gets
+filled with eight populations, the migrations algorithm needs to assign each one
+a place in the hypercube structure. Figure 3 it has shown the layout of the
+structure.
+
+The structure resembles a cube, and in every one of its vertices is one
+population. One thing that stands immediately is the capital P because only four
+populations have it. In this algorithm, we divided the hypercube into two
+dimensions. Moreover, depending on the iteration of the experiment, the exchange
+of solutions is restricted.
+
+Every iteration of an experiment changes the mode in which the populations
+communicate with each other. For example, in the first iteration, the eight
+populations can only communicate with the others in the same dimension. In the
+second iteration, the opposite happens, allowing them to exchange information
+with a population outside that dimension. With eight vertices, only two
+exchanges are allowed, and for the experiments on this paper, only the best 10\%
+of solutions migrate to another swarm.
+
+
+\section{Experimental Setup and Results}
+
+We implemented the migration policies in Python; for the PSO algorithm, we use
+the Evolopy library \cite{b19}, as mentioned earlier in this paper, we use the
+same parameters for the PSO algorithm as the EvoSwarm paper (see Table 1).
+
+
 
 \begin{table}[h!]
 \centering
@@ -319,8 +365,6 @@ C2 & 2 \\[0.5ex]
 \end{tabular}
 \label{table:1}
 \end{table}
-
-\subsection{EvoSwarm} 
 
 Continuing with the configuration of the experiments, Table 2 presents the
 parameters used in EvoSwarm; these are for the 3 cases presented in this paper.
@@ -370,69 +414,45 @@ using the benchmark can be compared against a great variety of optimization
 methods. The complete collection of functions, graphics, and equations can be
 reviewed in reference \cite{bbob}.
 
-%\subsection{EvoSwarm communication topology} 
-% These sections are too
-% short and could be merged - JJ
-%diagrama maybe % ok Mario
-
-In the original communication policy, the architecture waited until a minimum of
-three populations reached the migration component. These populations are sent to
-a process that combines the best half of each one with the others. For example,
-let us name the three populations A, B, and C, then a sort method is applied to
-each one (based on the quality of the solution). The sorted populations are now
-divided into halves in preparation for the merging process, now, with three new
-populations, the first one has the best half of A and B, the second has the best
-of B and C, and the third has the best of A and C. The last step is reinserting
-these new populations into a queue from which the PSO processes will retake
-them.
-
-The first modification, in this case, is only on the merging process. To create
-a chained algorithm that affects every three arriving populations, we sort the
-three populations. The modification consists in that the populations are only
-allowed to share a few members of the elite. In this case, 10. Individuals are
-carried into a chain structure in which a population can receive only one way of
-the structure and shares in another.
-
-The 2nd variation for the EvoSwarm structure is a hypercube; we based this one
-on a paper in which this topology was applied to solve a multi-reservoir of
-water using a multi-population algorithm \cite{b20}. The name indicates this
-method has a cubic structure and can only function with eight populations or
-more. For this paper, we only need eight populations. Once the algorithm gets
-filled with eight populations, the migrations algorithm needs to assign each one
-a place in the hypercube structure. Figure 3 it has shown the layout of the
-structure.
-
-The structure resembles a cube, and in every one of its vertices is one
-population. One thing that stands immediately is the capital P because only four
-populations have it. In this algorithm, we divided the hypercube into two
-dimensions. Moreover, depending on the iteration of the experiment, the exchange
-of solutions is restricted.
-
-Every iteration of an experiment changes the mode in which the populations
-communicate with each other. For example, in the first iteration, the eight
-populations can only communicate with the others in the same dimension. In the
-second iteration, the opposite happens, allowing them to exchange information
-with a population outside that dimension. With eight vertices, only two
-exchanges are allowed, and for the experiments on this paper, only the best 10\%
-of solutions migrate to another swarm.
-
-\section{Experimental Results}
-
-
 % Add some information about how the experiments were performed, type
 % of machine, how much time they took ... -JJ
 
-The experiments where made in a single computer using a Ryzen 5 2600x and 24 gb
-of ram, using the tecnology of docker 10 virtual computers were created for the
-process. Each experiment was conducted separetly and the standar time to do one,
-is about 6 to 8 hours.
+\subsection{Experimental Results}
 
-Table 3 shows the different MSE obtained in the experimentation. % Also,
+We run the experiments in a single computer using a Ryzen 5 2600x CPU and 24 GB
+of ram in Windows 10 Professional 64 bits, using Docker Desktop version 2.5,
+running ten containers. We used Python version 3.5.7. We conducted each
+experiment separately 30 times. The time required for each run took about 7
+hours. In these experiments, we are not interested in the total time required to
+find a solution as the changes in the algorithm did not affect the running time.
+In this case, we are focused on the MSE of the best solution found with the same
+number of function evaluations.
+
+In ten dimensions, there are three functions in which the original topology
+gives better results than the topologies we propose (shown in boldface).
+However, once we reach twenty dimensions, the original topology obtains the
+worst results. Overall the chain topology gives a better MSE in 20 dimensions,
+only having two cases with a lower MSE than the hypercube configuration. We can
+see that the standard deviation of the MSE obtained by the three options only
+varies in few cases.In particular, the function $f_{10}$ was difficult for this
+algorithm and could not find a target in any run.  
+
+In the same table, we present the results of the statistical tests of comparing
+both topologies against the original migration. In this case, we use a \(Z\)
+statistical test with an $\alpha$ of 0.5, giving a critical value of 1.64.
+Underline results have sufficient statistical evidence to have less MSE; this
+means that changing the communication topology can improve, in some cases, the
+performance of a multi-population optimization algorithm.
+
+
+% Also, % you need to comment these results JJ % Also,
 % you need to comment these results JJ
+% ok - M 
 
 \begin{table}[h!tb]
     \centering
-    \caption{Comparison of MSE obtained with the experiments, best results are in bold}
+    \caption{Comparison between the MSE obtained from 30 runs. We show the best results in boldface. Also, we
+     present the statistical comparison against the EvoSwarm method, with significant results underlined. }
     \scalebox{0.72}{
     \begin{tabular}{|c|c||c|c|c||c|c|c|}
     \hline
@@ -466,122 +486,7 @@ Table 3 shows the different MSE obtained in the experimentation. % Also,
 \hfill\break
 
 
-%\subsection{Statistical test} % This should not be a different
-                              % section. Statistical tests are always
-                              % needed - JJ
-We present the statistical tests below to compare the three methods
-applied in this work, comparing the two new methods with the original
-method and between them. In this case, we use a \(Z\) statistical test
-with an $\alpha$ of 0.5, giving a critical value to exceed 1.64 that 
-when surpassed signifies that the MSE in the right of the comparisson 
-has sufficient evidence of having a minor MSE; % meaning? - JJ
-in Table 4, the comparison between the EvoSwarm method and the Chain
-method can be observed. Table 5 shows the comparison between EvoSwarm
-and the Hypercube method. Finally, Table 6 is the comparison between
-the methods and the Hypercube chain.\hfill \break
-% You should simply show which comparisons are significant in the
-% previous table - JJ
-% Please add the following required packages to your document preamble:
-% \usepackage{booktabs}
-\begin{table}
-\caption{Statistical comparison for EvoSwarm vs Chain method, positive test results are in bold}
-    \scalebox{0.99}{
-\begin{tabular}{|c|c|c|c|c|c|}
-  \hline
-  % If the z critic value is always the same, there's no need to
-  % include it - JJ 
-Dimension & Function & EvoSwarm MSE & Chain MSE  & EvoSwarm vs Chain Z value & Z critic value \\
-\hline
-10        & 1        & 4.7861E-09   & 4.4579E-09 & 0.38385888                    \\
-10        & 2        & 3.8305E-09   & 4.1792E-09 & -0.51477671                   \\
-10        & 3        & 2.35292757   & 0.53764944 & \textbf{3.04132131}           \\
-10        & 9        & 0.49249742   & 0.2527938  & 1.31849085                    \\
-10        & 10       & 250.173833   & 430.542073 & -1.71933543                   \\
-10        & 15       & 14.6650026   & 12.0546942 & \textbf{1.64153098}           \\
-10        & 17       & 0.0923583    & 0.07576297 & 0.3984427                     \\
-10        & 18       & 0.52485291   & 0.50641272 & 0.12824242                    \\
-10        & 21       & 0.32985228   & 0.23742293 & 0.64359863                    \\
-10        & 22       & 0.69206415   & 0.51478211 & 1.05251019                    \\
-20        & 1        & 0.03594249   & 5.5523E-09 & 0.99999998                    \\
-20        & 2        & 5.6467E-09   & 5.4975E-09 & 0.23720531                    \\
-20        & 3        & 12.082746    & 8.74663868 & 1.57882461                    \\
-20        & 9        & 11.1034972   & 11.370252  & -0.5302659                    \\
-20        & 10       & 4994.88899   & 4472.97104 & 0.55192392                    \\
-20        & 15       & 58.8810247   & 53.5457402 & 1.09914007                    \\
-20        & 17       & 0.78895834   & 0.76687862 & 0.19644001                    \\
-20        & 18       & 2.53338619   & 2.25526688 & 1.10707452                    \\
-20        & 21       & 0.90170655   & 0.39256696 & \textbf{2.09733952}           \\
-20        & 22       & 3.6252321    & 1.51828786 & \textbf{2.6846472}            \\
-\hline
-\end{tabular}}
-\end{table}
-%EvoSwarm vs Hypercube
-\begin{table}
-\caption{Statistical comparison for EvoSwarm vs Hypercube method, positive test results are in bold}
-    \scalebox{0.90}{
-\begin{tabular}{|c|c|c|c|c|c|}
-\hline
-Dimension & Function & EvoSwarm MSE & Hypercube MSE  & EvoSwarm vs Hypercube Z value & Z critic value \\
-\hline
-10 & 1  & 4.78611E-09 & 4.52861E-09 & 0.30205024 \\
-10 & 2  & 3.83054E-09 & 4.65155E-09 & -1.19206785 \\
-10 & 3  & 2.352927573 & 0.805637277 & \textbf{2.54675887} \\
-10 & 9  & 0.49249742  & 0.229809004 & 1.45323968   \\
-10 & 10 & 250.1738327 & 374.4359744 & -1.71949324 \\
-10 & 15 & 14.66500256 & 13.33777036 & 0.80707958   \\
-10 & 17 & 0.0923583   & 0.087059177 & 0.12041284   \\
-10 & 18 & 0.524852914 & 0.413659866 & 0.82306364  \\
-10 & 21 & 0.329852279 & 0.20667313  & 0.91847447  \\
-10 & 22 & 0.692064149 & 0.57179096  & 0.75725758   \\
-20 & 1  & 0.03594249  & 5.54663E-09 & 0.99999998   \\
-20 & 2  & 5.64673E-09 & 5.36566E-09 & 0.40712309  \\
-20 & 3  & 12.082746   & 7.874205319 & \textbf{1.99114048}   \\
-20 & 9  & 11.10349719 & 11.49485451 & -1.16267417 \\
-20 & 10 & 4994.888993 & 5805.968994 & -0.60965616 \\
-20 & 15 & 58.88102471 & 56.38870042 & 0.46747275  \\
-20 & 17 & 0.788958338 & 0.764906251 & 0.20135086  \\
-20 & 18 & 2.533386188 & 2.559019459 & -0.0776709  \\
-20 & 21 & 0.901706552 & 0.395204608 & \textbf{2.23899811}   \\
-20 & 22 & 3.625232097 & 1.650088133 & \textbf{2.59133147}  \\
-  \hline
-  % Best to present MSE +- StdDev, it's not so visual in different columns
-\end{tabular}}
-\end{table}
 
-%Chain vs Hypercube
-
-\begin{table}[h!tb]
-\caption{Statistical comparison for Chain vs Hypercube method, positive test results are in bold}
-    \scalebox{0.99}{
-\begin{tabular}{|c|c|c|c|c|c|}
-\hline
-Dimension & Function & Chain MSE & Hypercube MSE  & Chain vs Hypercube Z value & Z critic value \\
-\hline
-10 & 1  & 4.4579E-09 & 4.5286E-09 & -0.08393014  \\
-10 & 2  & 4.1792E-09 & 4.6515E-09 & -0.62905414  \\
-10 & 3  & 0.53764944 & 0.80563728 & -0.64672855 \\
-10 & 9  & 0.2527938  & 0.229809   & 0.66826276   \\
-10 & 10 & 430.542073 & 374.435974 & 0.49686142   \\
-10 & 15 & 12.0546942 & 13.3377704 & -0.88253544  \\
-10 & 17 & 0.07576297 & 0.08705918 & -0.26448643  \\
-10 & 18 & 0.50641272 & 0.41365987 & 0.84096876   \\
-10 & 21 & 0.23742293 & 0.20667313 & 0.27151497   \\
-10 & 22 & 0.51478211 & 0.57179096 & -0.3220766  \\
-20 & 1  & 5.5523E-09 & 5.5466E-09 & 0.00809714  \\
-20 & 2  & 5.4975E-09 & 5.3657E-09 & 0.18397258   \\
-20 & 3  & 8.74663868 & 7.87420532 & 0.43285509   \\
-20 & 9  & 11.370252  & 11.4948545 & -0.26587439  \\
-20 & 10 & 4472.97104 & 5805.96899 & -1.20027498  \\
-20 & 15 & 53.5457402 & 56.3887004 & -0.57885803  \\
-20 & 17 & 0.76687862 & 0.76490625 & 0.01653624   \\
-20 & 18 & 2.25526688 & 2.55901946 & -0.94401758  \\
-20 & 21 & 0.39256696 & 0.39520461 & -0.01355104  \\
-20 & 22 & 1.51828786 & 1.65008813 & -0.34473831  \\
-\hline
-\end{tabular}}
-\end{table}
-\hfill
-\break
 
 % There does not seem to be a big difference, and none at all between
 % the different technologies. You should comment on this, and why it
@@ -589,32 +494,37 @@ Dimension & Function & Chain MSE & Hypercube MSE  & Chain vs Hypercube Z value &
 
 \section{Conclusions}
 
-In this research, we compared three communication methods between
-populations of a multi-swarm system to identify the variation in the
-result caused by these changes. However, the difference between most
-of the results is not very large.
 % Discussion should include why this happens, and why there are
 % differences in specific circumstances or functions. Also if there's
 % some change with the problem size (dimensions) - JJ
 
-Nevertheless, there are scenarios in
-which the change was quite relevant, so it is possible to say that the
-change in communication policies significantly impacts multi-swarm
-methods for continuous optimization. In the same way, we must take
-into account that in this case, we only changed the type of
-communication between sub-swarms, which is only one of the policies
-that we can alter in this type of system. In future works, other
-policies can be altered at the same time to see what impact they will
-have. With the results obtained, we can infer that the change to the
-communication method is relevant for this type of system in specific
-situations. The alteration of the different work policies in
-multi-swarm systems could lead to greater specialization of these in
-specific scenarios.
+
+In this research, we compared three communication methods between populations of
+a multi-swarm system to identify an advantage resulting from these changes.
+However, the difference between the results is not significant in most cases,
+but we obtained the best results at higher dimensions. This result means that
+the type of communication between populations needs to be restricted at higher
+dimensions, as is the case with the topologies we proposed. This need is also
+evident when the problem space is more deceptive, as is the case with function
+$f_{3}$ Rastrigin Separable. 
+
+Nevertheless, there are scenarios in which the change was quite relevant, so we
+can say that the change in communication policies significantly impacts
+multi-swarm methods for continuous optimization. In the same way, we must take
+into account that in this case, we only changed the type of communication
+between sub-swarms, which is only one of the policies that we can alter in this
+type of system. In future works, other policies can be altered at the same time
+to see what impact they will have. With the results obtained, we can infer that
+the change to the communication method is relevant for this type of system in
+specific situations. The alteration of the different work policies in
+multi-swarm systems could lead to greater specialization of these in specific
+scenarios
+
 
 \section*{Acknowledgments}
 
-This paper has been supported in part by project DeepBio (TIN2017-85727-C4-2-P).
-
+This paper has been supported in part by projects DeepBio (TIN2017-85727-C4-2-P)
+and TecNM Project 11356.21-P.
 
 \printbibliography
 
