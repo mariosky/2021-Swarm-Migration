@@ -97,13 +97,11 @@ University of Granada, Spain, \email{jmerelo@ugr.es}}
   using several continuous optimization benchmark functions to assess the
   benefits of changing a communication topology. After the experiments, the
   chain topology had a better performance using MSE as a metric.
-  
-  
   % Probably rewrite it. Why did you do it? Why did
                   % you think it would work? - JJ
  % Done - Mario 
  % Edit at will - Mario
-                   
+
 
 \keywords{PSO, EvoSwarm, multi-swarm intelligence, communication topologies,
  chain algorithm, hypercube, multi-swarm PSO.}
@@ -209,6 +207,9 @@ conclusions for this investigation.
 %countless works, some of them mentioned in this paper, PSO has great
 %compatibility with the techniques that are intended to be used.
 
+% The remaining text is basically taken from Wikipedia and other
+% article. This needs to be rewritten basically from scratch.
+
 Particle Swarm Optimization (PSO) is an optimization algorithm
 inspired flocks of birds or schools
 of fish. Since it was introduced in 1995 by  J. Kennedy and
@@ -234,6 +235,8 @@ discovered, although this may not happen\cite{b3}.
 % need multiple swarms. Also, it should go to the state of the art if
 % this is the focus of the paper - JJ
 
+
+%%%% ---------------------- Needs to be rewritten -----------------------
 Multi-swarm optimization is a variant of Particle Swarm Optimization
 (PSO) based on multiple swarms (or sub-swarm) instead of one. The basic flow in
 a multi-swarm optimization is that each sub-swarm focuses on a specific search
@@ -255,7 +258,15 @@ new regions promising to "keep going." % This should probably go to
 
 In contrast to typical PSO swarms, sub-swarms are fed with 
 information % you should qualify "some" - jj
-about previous swarms. These could be the positions and velocities instead of having their initial parameters to be randomly selected. In general, the development of multi-swarm systems creates a new path of design decisions that did not exist during the original development of PSO. These design decisions have been have well-established guidelines thanks to the numerous studies on the topic, for example, the use of non-random initial positions and initial velocities leads to better re-sults in multi-swarm systems, which is not the case for individual swarms \cite{b9}.
+about previous swarms. These could be the positions and velocities
+instead of having their initial parameters to be randomly selected. In
+general, the development of multi-swarm systems creates a new path of
+design decisions that did not exist during the original development of
+PSO. These design decisions have been have well-established guidelines
+thanks to the numerous studies on the topic, for example, the use of
+non-random initial positions and initial velocities leads to better
+re-sults in multi-swarm systems, which is not the case for individual
+swarms \cite{b9}. 
 
 Some of these decisions can be reached by relatively independent
 subcomponents that allow different optimization techniques to be
@@ -294,7 +305,10 @@ Based on the previous information, another problem is born, and it is how to han
 
 There have been some papers focused in optimizing the communication
 between swarms, for example the survey in reference \cite{b15} has a
-collection of different investigations around this subject. For
+collection of different investigations around this subject.
+
+% Rewrite this too -- JJ
+For
 example El-Abd and Kamel discussed the multiple factors that can
 change the behavior of multiple cooperating swarms, these factors
 included the communication strategy used and the number swarms. The
