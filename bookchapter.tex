@@ -119,29 +119,27 @@ Among the various strategies that have emerged in recent times for bio-inspired
 optimization algorithms, the creation of multiple populations working
 in parallel and (possibly) asynchronously has proven to be valuable in 
 solving complex optimization problems \cite{a1}.
-Researchers often divide the original population into small sub-populations for some
-purposes, for example, solving large-scale optimization problems and dynamic
-optimization problems. Existing studies on multi-population optimization show
-that it integrates easily into various nature-inspired optimization algorithms,
-and often performs better than using single-population optimization algorithms
-including global reference functions and real-world applications \cite{b11} \cite{b12}.
-Other investigations, reviews, and surveys on multi-population methods have also
+Researchers often divide the original population into small sub-populations in order to 
+achieve a certain outcome, for instance, solving large-scale optimization problems and dynamic
+optimization problems. There are some studies on multi-population optimization that show
+that it is possible integrate this aproach easily into various nature-inspired optimization algorithms,
+and often outperforms the ones using single-population optimization algorithms \cite{b11} \cite{b12}.
+Other investigations, reviews, and surveys on multi-population approaches have also
 been published in recent years, in which multi-population concepts are described
-using other terms like parallel, cooperative, co-evolution, and islands.
+using other terms like 'parallel,' 'Cooperative,' 'co-evolution,' and 'islands.'
 Its multi-threaded and parallel processing features that significantly speed up
 deployment time \cite{b13} \cite{b14}.
 
 One of the critical points in this technique is communication between
 populations, since it has been observed in various studies that the
-exchange of possible solutions helps to improve the performance of
-optimization algorithms \cite{a2}. The following four parameters
+exchange of possible solutions helps optimizations algorithms to gain performance \cite{a2}. The following four parameters
 control communication between sub-populations:
 
 \begin{itemize}
-    \item A communication speed that defines the number of solutions in a sub-population to share with other sub-populations.
-    \item A communication policy that determines which solutions should be replaced by those of other sub-populations.
+    \item A communication speed that defines how many solutions are able to be exchanged between sub-populations.
+    \item A communication policy encharge of selecting which solutions should be replaced by those of coming from another sub-populations.
     \item A communication interval that establishes the frequency to execute the communication.
-    \item A connection topology that defines how to connect sub-populations.
+    \item A connection topology that specifies the exact way subpopulations communicate.
 \end{itemize}
 
 Several distributed architectures have been proposed to manage the communication
@@ -166,80 +164,71 @@ Section 5 presents the conclusions for this work.
 \section{State of the Art}
 
 Particle Swarm Optimization (PSO) is an optimization algorithm
-inspired flocks of birds or schools of fish. Since it was introduced in 1995 by  J. Kennedy and
+inspired by the collective behavior of some flocks of birds or schools of fish. It was introduced in 1995 by  J. Kennedy and
 R. Eberhar, it has undergone several improvements \cite{b1}. % pon el nombre del autor - M -j
 Since then, researchers have created different versions, which aimed at different
-purposes, developed new applications in many areas, published theoretical
-studies on the effects of various parameters, and proposed many many
-algorithm variants \cite{b2}. A basic version of the PSO algorithm
-works with a population (swarm) of possible solutions
-(particles). These particles move in the search space according to
-some simple formulas. The movements in the particles' search space are
-determined by their best known position and by the best known position
-of the entire swarm. As better positions are discovered, they will
+purposes, developed new applications in various areas, published many studies on the effects of various parameters, and proposed great variety algorithm variants \cite{b2}. A basic version of the PSO algorithm
+works with a population , called a swarm, of possible solutions
+known as particles. These ones move in the search space according to
+some simple rules derived from formulas. The movements in the particles' search space are
+determined by their best known locations and by the best known location
+of the entire swarm. These locations are suppossed to get better and they will
 guide the swarm's movements. The process is repeated many times, so it
-is expected that a satisfactory solution will eventually be
+is expected that solution that meets the requirements will eventually be
 discovered, although this may not happen\cite{b3}.
 
 
-%%%% ---------------------- Needs to be rewritten -----------------------
-Multi-swarm optimization is a variant of Particle Swarm Optimization
-(PSO) based on multiple swarms (or sub-swarm) instead of one. The basic flow in
-a multi-swarm optimization is that each sub-swarm focuses on a specific search
-space region. In contrast, a specific diversification method decides where and
-when to launch the sub-swarms.
 
-For example, Wave of Swarm of Particles \cite{b6} bases its
-diversification technique on the ``collision'' of particles. When the
+Multi-swarm optimization is one of the most known variants of Particle Swarm Optimization
+(PSO) based the creation of multiple swarms (or sub-swarm) instead of just one. The basic flow in
+a multi-swarm optimization is that each sub-swarm has it's own specific region to concentrate. A specific diversification method decides where and
+when to locate and execute this sub-swarms.
+
+For example, Wave of Swarm of Particles \cite{b6} uses a technique on the "collision" of particles. When the
 particles are close to each other, they are sent into new sub-swarms,
-preventing complete convergence. The Dynamic Multi-Swarm-Particle
-Swarm Optimizer\cite{b7} regroups the particles from the sub-swarms
-(if they have converged) into new sub-swarms periodically, so the new
-iteration of swarms are started with particles from the previous
-one. Locust swarms \cite{b8} are founded on a ``devour and go'' strategy
-after a sub-swarm ``devours'' a small fraction of the search space. In
-order to find a local optimum, explorers are deployed to search for
-new regions promising to ``keep going.''
+preventing full convengece between the sub-swarms. Another examples is the Dynamic Multi-Swarm-Particle
+Swarm Optimizer\cite{b7} that rearranges the particles from the sub-swarms
+(when converged) into new ones periodically, so the new
+iteration of sub-swarms have the advantage of starting with particles from the previous
+one. Locust swarms \cite{b8} are founded on a "devour and go" strategy
+after a sub-swarm consumes or "devours" a small fraction of the search space an explorer is deployed to search for
+new regions making the sub-swarm move to the new promised location ("keep going").
 
 In contrast to typical PSO swarms, sub-swarms are fed with information about
 previous swarms. These could be the positions and velocities instead of having
-their initial parameters to be randomly selected. In general, the development of
-multi-swarm systems creates a new path of design decisions that did not exist
-during the original development of PSO. These design decisions have been have
-well-established guidelines thanks to the numerous studies on the topic, for
-example, the use of non-random initial positions and initial velocities leads to
-better re-sults in multi-swarm systems, which is not the case for individual
-swarms \cite{b9}.
+their initial parameters to be randomly selected. Generaly speaking, the development of
+multi-swarm systems creates a new path of design options that who were not present at the time the original PSO emerged. 
+These design decisions now have guidelines thanks to the numerous studies on the topic, for
+example, tow common opotions are the use of non-random initial positions and initial velocities for the particles in the subs-warms helping to
+better results, which is not the case for individual swarms \cite{b9}.
 
-
-Some of these decisions can be reached by relatively independent
-subcomponents that allow different optimization techniques to be
-tested. For example, the multi-swarm system UMDA-PSO \cite{b10}
-combines elements of particle swarm optimization, distribution
-estimation algorithm, and differential evolution in a multi-swarm
-hybrid method. There have been some papers focused in optimizing the communication
-between swarms, for example the survey in reference \cite{b15} has a
-collection of different investigations around this subject.
+A few number of this options can be reached by relatively independent
+subcomponents that allow different aproaches to this matter to be
+tested. For example, the multi-swarm system UMDA-PSO \cite{b10} 
+applies a multi-swarm hybrid aproach using a diverse combination of 
+elements from particle swarm optimization, distribution estimation 
+algorithm, and differential evolution.
 
 % Rewrite this too -- JJ
-For
-example El-Abd and Kamel discussed the multiple factors that can
-change the behavior of multiple cooperating swarms, these factors
-included the communication strategy used and the number swarms. The
-experimental results demonstrated that a circular topology
-communication strategy has an overall better performance than those
-that simple share the global best of all the swarms\cite{b16}. 
+There have been some papers focused in optimizing the communication
+between swarms, for example the survey in reference \cite{b15} has a
+collection of different investigations around this subject. For
+example El-Abd and Kamel talked over the multiple factors that can
+change the overall behavior of multiple joined swarms, some of this factors
+were the strategy and path of comunications between swarms and the number sub-swarms. 
+Then an experiment was made applying a circular topology of comunications, 
+the results demonstrated that this aproach has an overall superior performance 
+than using a simpler techniche of sharing the global best of all the swarms\cite{b16}. 
 
 Another example and the source of inspiration for this paper, is one
-of Li and Zeng, who presented a multi-population agent based
-co-genetic algorithm with a chain-like structure for parallel global
-numerical optimization, where a close chain-like connection structure,
-a cycle chain-like connection structure and a dynamic neighborhood
-were used to improve the parallel optimization\cite{b17}. 
+of Li and Zeng, who presented a multi-population algorithm with a chain-like structure for parallel global
+numerical optimization. In this aproximation a few changes where applied, like a dynamic neighborhood,
+in order to improve the parallel optimization\cite{b17}. 
 
 In the next section, we present two variants of communication topologies,
 to be used in an event-based architecture for the implementation of 
 distributed population-based optimization algorithms.
+
 
 \section{Proposed method}
 
