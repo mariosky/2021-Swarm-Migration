@@ -164,36 +164,64 @@ mentioned above. They can work without altering the optimization
 algorithm allowing a fair comparison with other communication
 methods. 
 
-This paper contains the following sections: We present state-of-the-art on
-multi-swarm optimization in Section 2. In Section 3, we present two variants of communication topologies,
-to be used in an event-based architecture we also present in the section. In Section 4, 
-we describe the experimental setup and results, Furthermore,
-Section 5 presents the conclusions for this work.
+This paper contains the following sections: We present
+state-of-the-art on multi-swarm optimization in Section
+\ref{sec:soa}. In Section 3, we present two variants of communication
+topologies, to be used in an event-based architecture we also present
+in the section. In Section 4, we describe the experimental setup and
+results; additionally, Section 5 presents the conclusions for this
+work.
 
 \section{State of the Art}
+\label{sec:soa}
 
 Particle Swarm Optimization (PSO) is an optimization algorithm
-inspired by the collective behavior of some flocks of birds or schools of fish. It was introduced in 1995 by  J. Kennedy and
-R. Eberhar, it has undergone several improvements \cite{b1}. % pon el nombre del autor - M -j
-Since then, researchers have created different versions, which aimed at different
-purposes, developed new applications in various areas, published many studies on the effects of various parameters, and proposed great variety algorithm variants \cite{b2}. A basic version of the PSO algorithm
-works with a population , called a swarm, of possible solutions
-known as particles. These ones move in the search space according to
-some simple rules derived from formulas. The movements in the particles' search space are
+inspired by the collective behavior of some flocks of birds and schools of fish. It was introduced in 1995 by  J. Kennedy and
+R. Eberhart, and since then it has undergone several improvements \cite{b1}. % pon el nombre del autor - M -j
+Since then, researchers have created different versions, aimed at different
+purposes, developed new applications in various areas, published many
+studies on the effects of various parameters, and proposed great
+variety algorithm variants \cite{b2}. % This sentence does not really
+                                % contribute to the paper. It's too
+                                % generic, and does not have a
+                                % point. - JJ
+A basic version of the PSO algorithm
+works with a population, called a swarm, of possible solutions, which
+are denominated particles. They ``move'' in the search space according to
+some simple rules derived from formulas. % This is not the state of
+                                % the art, but a general introduction
+                                % to the technique. Should go to the
+                                % introduction, or better yet, just
+                                % eliminate it completely. - JJ
+
+The movements in the particles' search space are
 determined by their best known locations and by the best known location
-of the entire swarm. These locations are suppossed to get better and they will
+of the entire swarm. % Using "known" here is confusing. - JJ
+These locations are suppossed to get better and they will
 guide the swarm's movements. The process is repeated many times, so it
 is expected that solution that meets the requirements will eventually be
-discovered, although this may not happen\cite{b3}.
+discovered, although this may not happen\cite{b3}. % All this should
+                                % probably go to the intro.
 
 
+% There should be a transitional sentence that goes from PSO to
+% multi-swarm PSO. - JJ
+Multi-swarm optimization is one of the most widely known variants of Particle Swarm Optimization
+(PSO), and it is based the creation of multiple swarms (or sub-swarm)
+instead of just one. % What is the motivation for MSPSO? Why do you
+                     % focus on it on this paper? - JJ
+The basic flow in
+a multi-swarm optimization is that each sub-swarm has its own specific region to concentrate. A specific diversification method decides where and
+when to locate and execute this sub-swarms. % First mention of
+                                % diversification method. What is it?
+                                % - JJ
 
-Multi-swarm optimization is one of the most known variants of Particle Swarm Optimization
-(PSO) based the creation of multiple swarms (or sub-swarm) instead of just one. The basic flow in
-a multi-swarm optimization is that each sub-swarm has it's own specific region to concentrate. A specific diversification method decides where and
-when to locate and execute this sub-swarms.
-
-For example, Wave of Swarm of Particles \cite{b6} uses a technique on the "collision" of particles. When the
+% You should relate these to the challenges in single-swarm PSO and
+% how they're approached in these different techniques. A SoA is not
+% an enumeration of papers - JJ
+For example, Wave of Swarm of Particles \cite{b6} uses a technique on
+the "collision" of particles. % Technique on? Please rephrase - JJ
+When the
 particles are close to each other, they are sent into new sub-swarms,
 preventing full convengece between the sub-swarms. Another examples is the Dynamic Multi-Swarm-Particle
 Swarm Optimizer\cite{b7} that rearranges the particles from the sub-swarms
