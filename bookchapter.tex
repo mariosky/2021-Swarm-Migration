@@ -232,7 +232,8 @@ after a sub-swarm consumes or "devours" a small fraction of the search space an 
 new regions making the sub-swarm move to the new promised location ("keep going").
 
 In contrast to typical PSO swarms, sub-swarms are fed with information about
-previous swarms. These could be the positions and velocities instead of having
+previous swarms. % previous in what sense? - JJ
+These could be the positions and velocities instead of having
 their initial parameters to be randomly selected. Generaly speaking, the development of
 multi-swarm systems creates a new path of design options that who were not present at the time the original PSO emerged. 
 These design decisions now have guidelines thanks to the numerous studies on the topic, for
@@ -258,9 +259,13 @@ the results demonstrated that this aproach has an overall superior performance
 than using a simpler techniche of sharing the global best of all the swarms\cite{b16}. 
 
 Another example and the source of inspiration for this paper, is one
-of Li and Zeng, who presented a multi-population algorithm with a chain-like structure for parallel global
+of Li and Zeng, % please check name spelling - JJ
+who presented a multi-population algorithm with a chain-like structure for parallel global
 numerical optimization. In this aproximation a few changes where applied, like a dynamic neighborhood,
-in order to improve the parallel optimization\cite{b17}. 
+in order to improve the parallel optimization\cite{b17}.
+
+% A state of the art section must have a conclusion, saying why your
+% methods imply an advance over the state of the art - JJ
 
 In the next section, we present two variants of communication topologies,
 to be used in an event-based architecture for the implementation of 
@@ -280,9 +285,10 @@ approach. Therefore, there is an opportunity to find a substantial variation in
 the performance of such an optimization algorithm by changing the way the
 various swarms communicate to exchange information.
 
-\subsection{EvoSwarm} 
-First, we briefly present the overall architecture of EvoSwarm, the 
-platform in which we implemented the distributed algorithm. 
+\subsection{EvoSwarm}
+
+First, we briefly present the overall architecture of EvoSwarm, the
+platform in which we implemented the distributed algorithm.
 
 EvoSwarm follows an event-based architecture, using message queues for
 interprocess communication. Messages consist of small populations or swarms that
@@ -303,6 +309,7 @@ to be consumed by a migration process responsible for the communication
 % \label{fig:example}
 % \end{figure}
 % Eliminated. It's in Spanish...
+% Better translate it ... it needs a figure - JJ
 
 It is worth mentioning that this architecture can be implemented using various
 computers in a network or using virtualization, in work we used Docker containers. 
@@ -322,12 +329,18 @@ EvoSwarm brings to the user:
 \end{itemize}
 
 The only change made to the original version of EvoSwarm \cite{b18} was the
-communication policy between the populations of the multi-swarm PSO.
+communication policy between the populations of the multi-swarm PSO. % You should say why this change was made; also if it's been released as open source - JJ
 
-\subsection{Proposed communication topologies for EvoSwarm} 
+\subsection{Proposed communication topologies for EvoSwarm}
 
-In the original communication policy, the architecture waited until a minimum of
-three populations reached the migration component. These populations are sent to
+In the original communication policy, the architecture % An
+                                % architecture can't wait for
+                                % anything. Also add a reference - JJ
+
+waited until a minimum of
+three populations reached the migration component. % Component? it
+                                % would help if there was a figure - JJ
+These populations are sent to
 a process that combines the best half of each one with the others. For example,
 let us name the three populations A, B, and C, then a sort method is applied to
 each one (based on the quality of the solution). The sorted populations are now
