@@ -85,22 +85,31 @@ University of Granada, Spain, \email{jmerelo@ugr.es}}
 
   Using multiple-swarm PSO is a technique used in recent years to help improve
   the performance of nature-inspired optimization algorithms. A distributed PSO
-  algorithm can work in each swarm in parallel and also communicate particles
-  between them asynchronously. However, the design of these systems is not a
-  trivial task because many architectural options affect the exploration and
-  exploitation of the search space. In this paper, we focus on proposing and
-  comparing two communication policies regarding which swarms can communicate
-  with each other. These policies intend to limit the communication between
-  populations to increase exploration and avoid premature convergence. The
-  proposed policies are chain and hypercubic topologies. We implemented them
-  following an event-based cloud-native design. We compared the three options
+  algorithm can work in every swarm in parallel and also communicate particles
+  between them asynchronously. However, the design % Which aspect of
+                                % the design? - JJ
+  of these systems is not a
+  trivial task because any architectural options will affect how the
+  search space is explored, and how better solutions found are
+  exploited. % Maybe add a sentence talking about how communication
+             % topology has a big influence - JJ
+  In this paper, we focus on proposing and 
+  comparing two communication policies regarding how the communication
+  graph between swarms is organized. These policies intend to limit the communication between
+  populations to increase per-swarm exploration
+  and avoid premature convergence % via the exploration of different
+                                % parts of the space in different swarms.
+  . The
+  proposed policies are chain and hypercubic topologies. % Why only
+                                % these two? - JJ
+  We implemented them in an event-based cloud-native design. We
+  compared the three options % two options above and which other one?
+                             % - JJ
   using several continuous optimization benchmark functions to assess the
-  benefits of changing a communication topology. After the experiments, the
+  benefits of choosing one communication topology over another. After the experiments, the
   chain topology had a better performance using MSE as a metric.
-  % Probably rewrite it. Why did you do it? Why did
-                  % you think it would work? - JJ
- % Done - Mario 
- % Edit at will - Mario
+  % Why do you mention only MSE metric at the end? Are there other
+  % metrics? - JJ
 
 
 \keywords{PSO, EvoSwarm, multi-swarm intelligence, communication topologies,
