@@ -137,32 +137,38 @@ Other investigations, reviews, and surveys on multi-population approaches have a
 been published in recent years, in which multi-population concepts are described
 using other terms like 'parallel,' 'Cooperative,' 'co-evolution,' and 'islands.'
 Its multi-threaded and parallel processing features that significantly speed up
-deployment time \cite{b13} \cite{b14}.
+deployment time \cite{b13} \cite{b14}. % Please rewrite - JJ
 
 One of the critical points in this technique is communication between
 populations, since it has been observed in various studies that the
-exchange of possible solutions helps optimizations algorithms to gain performance \cite{a2}. The following four parameters
-control communication between sub-populations:
+exchange of possible solutions helps optimizations algorithms to gain
+performance \cite{a2}. Communication has different aspects:
 
 \begin{itemize}
-    \item A communication speed that defines how many solutions are able to be exchanged between sub-populations.
-    \item A communication policy encharge of selecting which solutions should be replaced by those of coming from another sub-populations.
-    \item A communication interval that establishes the frequency to execute the communication.
-    \item A connection topology that specifies the exact way subpopulations communicate.
+    \item A {\em speed} that defines how many solutions are able to be exchanged between sub-populations.
+    \item A {\em policy} in charge of selecting which solutions should
+      be replaced by those of coming from another sub-populations.
+    \item An {\em interval} or gap that establishes the frequency with
+      which interchanges between populations take place.
+    \item A {\em connection topology} that specifies the exact way
+      subpopulations communicate.
 \end{itemize}
 
 Several distributed architectures have been proposed to manage the communication
 and parallel execution of these kind of algorithms, for example there is a
 similar approach by Scott Haberson et al. using a multi-population parallel
-genetic algorithm for independent evolution \cite{da1}. 
+genetic algorithm for independent evolution \cite{da1}. % This should
+% probably go to the state of the art.
 
-In this paper, we propose the two communication topologies to be implemented in a 
-even-based distributed multi-swarm Particle Swarm Optimization (PSO) algorithm.
-These comminication topologies follow a chain and a hypercube structure on a milti-swarm. We chose
-these topologies for their ability to be adapted to the architecture
+% You need to say here why speed, policy and interval are not used in
+% this paper - JJ
+In this paper, we propose the two communication topologies to be
+implemented in a even-based distributed multi-swarm Particle Swarm
+Optimization (PSO) algorithm.  These comminication topologies follow a
+chain and a hypercube structure on a milti-swarm. We chose these
+topologies for their ability to be adapted to the architecture
 mentioned above. They can work without altering the optimization
-algorithm allowing a fair comparison with other communication
-methods. 
+algorithm allowing a fair comparison with other communication methods.
 
 This paper contains the following sections: We present
 state-of-the-art on multi-swarm optimization in Section
