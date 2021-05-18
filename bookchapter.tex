@@ -40,14 +40,13 @@
 \mainmatter  % start of an individual contribution
 
 % first the title is needed
-\title{Application of a chain-like and a hypercube communication topologies 
-in a multi-swarm PSO algorithm applied to continuous optimization problems}
+\title{Can communication topology improve a multi-swarm PSO algorithms?}
 % Los titulos no llevan punto al final - M
 % Maybe this is a bit too long? Also, it would be best to say *why*
 % you did this, instead of what you did - JJ
 
 % a short form should be given in case it is too long for the running head
-\titlerunning{Appli. of comm. topologies in multi-swarm PSO}
+\titlerunning{Can comm. topo. improve multi-swarm PSO algs.?}
 
 % the name(s) of the author(s) follow(s) next
 %
@@ -82,34 +81,55 @@ University of Granada, Spain, \email{jmerelo@ugr.es}}
 
 
 \begin{abstract}
-
+  
   Using multiple-swarm PSO is a technique used in recent years to help improve
   the performance of nature-inspired optimization algorithms. A distributed PSO
-  algorithm can work in every swarm in parallel and also communicate particles
-  between them asynchronously. However, the design % Which aspect of
+  algorithm can work in every swarm in parallel and asynchronously communicate
+  particles between them. However, the communication design is not a trivial
+  task because any architectural change will affect how it explores the search
+  space and how it exploits the best particles. Nevertheless, it has been
+  reported that the exchange of possible solutions helps optimizations
+  algorithms to improve their performance. This paper focuses on proposing and
+  comparing two communication policies regarding how the communication graph
+  between swarms is organized. These policies intend to limit the communication
+  between populations to increase per-swarm exploration and avoid premature
+  convergence through exploring different parts of the space in different
+  swarms. The proposed policies are chain and hypercubic topologies and compare
+  them against a simple cross-over strategy using several continuous
+  optimization benchmark functions to assess the benefits of choosing one
+  communication topology over another. After the experiments, the chain-based
+  topology had a better error performance.
+
+
+  %Using multiple-swarm PSO is a technique used in recent years to help improve
+  %the performance of nature-inspired optimization algorithms. A distributed PSO
+  %algorithm can work in every swarm in parallel and also communicate particles
+  %between them asynchronously. However, the design of the communication between them    % Which aspect of
                                 % the design? - JJ
-  of these systems is not a
-  trivial task because any architectural options will affect how the
-  search space is explored, and how better solutions found are
-  exploited. % Maybe add a sentence talking about how communication
+  %is not a
+  %trivial task because any architectural change will affect how the
+  %search space is explored, and how better solutions found are
+  %exploited. % Maybe add a sentence talking about how communication
              % topology has a big influence - JJ
-  In this paper, we focus on proposing and 
-  comparing two communication policies regarding how the communication
-  graph between swarms is organized. These policies intend to limit the communication between
-  populations to increase per-swarm exploration
-  and avoid premature convergence % via the exploration of different
+  %In this paper, we focus on proposing and 
+  %comparing two communication policies regarding how the communication
+  %graph between swarms is organized. These policies intend to limit the communication between
+  %populations to increase per-swarm exploration
+  %and avoid premature convergence % via the exploration of different
                                 % parts of the space in different swarms.
-  . The
-  proposed policies are chain and hypercubic topologies. % Why only
+  %. The
+  %proposed policies are chain and hypercubic topologies. % Why only
                                 % these two? - JJ
-  We implemented them in an event-based cloud-native design. We
-  compared the three options % two options above and which other one?
+  %We implemented them in an event-based cloud-native design. We
+  %compared the three options % two options above and which other one?
                              % - JJ
-  using several continuous optimization benchmark functions to assess the
-  benefits of choosing one communication topology over another. After the experiments, the
-  chain topology had a better performance using MSE as a metric.
+  %using several continuous optimization benchmark functions to assess the
+  %benefits of choosing one communication topology over another. After the experiments, the
+  %chain topology had a better performance using MSE as a metric.
   % Why do you mention only MSE metric at the end? Are there other
   % metrics? - JJ
+  
+  % rewritten above - M  
 
 
 \keywords{PSO, EvoSwarm, multi-swarm intelligence, communication topologies,
@@ -124,24 +144,38 @@ University of Granada, Spain, \email{jmerelo@ugr.es}}
 % 3. Say the hypothesis you want to prove in the paper, its objective.
 % 4. Say how you want to prove that hypothesis.
 
-Among the various strategies that have emerged in recent times for bio-inspired
-optimization algorithms, the creation of multiple populations working
-in parallel and (possibly) asynchronously has proven to be valuable in 
-solving complex optimization problems \cite{a1}.
-Researchers often divide the original population into small sub-populations in order to 
-achieve a certain outcome, for instance, solving large-scale optimization problems and dynamic
-optimization problems. There are some studies on multi-population optimization that show
-that it is possible integrate this aproach easily into various nature-inspired optimization algorithms,
-and often outperforms the ones using single-population optimization algorithms \cite{b11} \cite{b12}.
-Other investigations, reviews, and surveys on multi-population approaches have also
-been published in recent years, in which multi-population concepts are described
-using other terms like 'parallel,' 'Cooperative,' 'co-evolution,' and 'islands.'
-Its multi-threaded and parallel processing features that significantly speed up
-deployment time \cite{b13} \cite{b14}. % Please rewrite - JJ
+Bio-inspired optimization algorithms are intrinsically parallel, and researchers
+have exploited this fact since their conception. A typical implementation is to
+divide a global population into many smaller populations working in parallel and
+(possibly) asynchronously. Multipopulation designs have been used to solve
+large-scale complex optimization problems, where the search space has many
+locally optimal solutions \cite{a1}. Several studies are showing that
+multi-population optimization often outperforms single-population approaches
+\cite{b11} \cite{b12}. Another advantage of multi-population optimization is the
+ability to have a parallel execution of each population, significantly improving
+computation time. Many proposals are using multi-threaded, parallel, and
+distributed processing to increase the speedup of the execution time \cite{b13}
+\cite{b14}.
+
+% Among the various strategies that have emerged in recent times for bio-inspired
+% optimization algorithms, the creation of multiple populations working
+% in parallel and (possibly) asynchronously has proven to be valuable in 
+% solving complex optimization problems \cite{a1}.
+% Researchers often divide the original population into small sub-populations in order to 
+% achieve a certain outcome, for instance, solving large-scale optimization problems and dynamic
+% optimization problems. There are some studies on multi-population optimization that show
+% that it is possible integrate this aproach easily into various nature-inspired optimization algorithms,
+% and often outperforms the ones using single-population optimization algorithms \cite{b11} \cite{b12}.
+% Other investigations, reviews, and surveys on multi-population approaches have also
+% been published in recent years, in which multi-population concepts are described
+% using other terms like 'parallel,' 'Cooperative,' 'co-evolution,' and 'islands.'
+% Its multi-threaded and parallel processing features that significantly speed up
+% deployment time \cite{b13} \cite{b14}. % Please rewrite - JJ
+% rewritten above - M 
 
 One of the critical points in this technique is communication between
 populations, since it has been observed in various studies that the
-exchange of possible solutions helps optimizations algorithms to gain
+exchange of possible solutions helps optimizations algorithms to improve their 
 performance \cite{a2}. Communication has different aspects:
 
 \begin{itemize}
@@ -154,14 +188,18 @@ performance \cite{a2}. Communication has different aspects:
       subpopulations communicate.
 \end{itemize}
 
-Several distributed architectures have been proposed to manage the communication
-and parallel execution of these kind of algorithms, for example there is a
-similar approach by Scott Haberson et al. using a multi-population parallel
-genetic algorithm for independent evolution \cite{da1}. % This should
-% probably go to the state of the art.
+% Several distributed architectures have been proposed to manage the communication
+% and parallel execution of these kind of algorithms, for example there is a
+% similar approach by Scott Haberson et al. using a multi-population parallel
+% genetic algorithm for independent evolution \cite{da1}. % This should
+% % probably go to the state of the art.
+% Moving it - M
 
 % You need to say here why speed, policy and interval are not used in
 % this paper - JJ
+In this work, we focus only on the connection topology aspect of the 
+communication, because    
+
 In this paper, we propose the two communication topologies to be
 implemented in a even-based distributed multi-swarm Particle Swarm
 Optimization (PSO) algorithm.  These comminication topologies follow a
