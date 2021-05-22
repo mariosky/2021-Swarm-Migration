@@ -536,7 +536,9 @@ performance of a multi-population optimization algorithm.
 \begin{table}[h!tb]
     \centering
     \caption{Comparison between the MSE obtained from 30 runs. We show the best results in boldface. Also, we
-     present the statistical comparison against the EvoSwarm method, with significant results underlined. }
+     present the statistical comparison against the EvoSwarm method,
+     with results underlined if they are significantly better than the
+     rest. }
     \scalebox{0.72}{
     \begin{tabular}{|c|c||c|c|c||c|c|c|}
     \hline
@@ -584,7 +586,10 @@ performance of a multi-population optimization algorithm.
 
 
 In this research, we compared three communication methods between populations of
-a multi-swarm system to identify an advantage resulting from these changes.
+a multi-swarm system to identify an advantage resulting from these
+changes: EvoSwarm, Chain and Hypercube. These three methods differ
+mainly in the number of connections every population is going to
+have.
 However, the difference between the results is not significant in most cases,
 but we obtained the best results at higher dimensions. This result means that
 the type of communication between populations needs to be restricted at higher
