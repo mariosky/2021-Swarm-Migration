@@ -598,40 +598,50 @@ In general, using these functions allowed us to characterize where
 different communication policies might offer any advantage over the
 baseline policy. We will try to draw some conclusions next.
 
-% There does not seem to be a big difference, and none at all between
-% the different technologies. You should comment on this, and why it
-% happens on these specific functions - JJ
 
 \section{Conclusions}
 
 % Discussion should include why this happens, and why there are
 % differences in specific circumstances or functions. Also if there's
 % some change with the problem size (dimensions) - JJ
-
-
-In this research, we compared three communication methods between populations of
+Communication policies for multiswarm PSOs have seldom been explored
+in the literature, despite the influence they might have in the final
+result. This is why, in this research, we compared three communication methods between populations of
 a multi-swarm system to identify an advantage resulting from these
 changes: EvoSwarm, Chain and Hypercube. These three methods differ
 mainly in the number of connections every population is going to
 have.
-However, the difference between the results is not significant in most cases,
-but we obtained the best results at higher dimensions. This result means that
-the type of communication between populations needs to be restricted at higher
-dimensions, as is the case with the topologies we proposed. This need is also
-evident when the problem space is more deceptive, as is the case with function
-$f_{3}$ Rastrigin Separable. 
 
-Nevertheless, there are scenarios in which the change was quite relevant, so we
-can say that the change in communication policies significantly impacts
-multi-swarm methods for continuous optimization. In the same way, we must take
+However, the experiments show that difference among results obtained
+by the different communication policies is not significant in most cases,
+but we obtained the best results at higher dimensions. Results show a
+weak evidence that restricting communications for higher number of
+dimensions might be positive, over all in multimodal functions, and when the problem space is more deceptive, as is the case with function
+$f_{3}$ Rastrigin Separable. In general, these are problems where the
+need to keep diversity high is stronger, and restriction of
+communication is a step in that direction. EvoSwarm, as a matter of
+fact, does also restrict communication, so maybe the baseline for
+comparison should have been a different method, using either total
+restriction in communications (via totally independent swarms) or
+total communication (via random or panmictic policy).
+
+We should take
 into account that in this case, we only changed the type of communication
 between sub-swarms, which is only one of the policies that we can alter in this
-type of system. In future works, other policies can be altered at the same time
-to see what impact they will have. With the results obtained, we can infer that
-the change to the communication method is relevant for this type of system in
-specific situations. The alteration of the different work policies in
-multi-swarm systems could lead to greater specialization of these in specific
-scenarios
+type of system. Different communication policies might need
+fine-tuning of other kind of parameters, to keep the
+exploitation-exploration balance in check; this has not been done
+extensively in this paper, and might be a future line of work.
+
+In future works, other policies can be altered at the same time to see
+what impact they will have. With the results obtained, we can infer
+that the change to the communication method is relevant for this type
+of system in specific situations. The alteration of the different work
+policies in multi-swarm systems could lead to greater specialization
+of these in specific scenarios. We could test, for instance, adaptive
+policies, or even changhing the number and size of swarms so that
+exploitation can be maintained at a higher clip in some cases. These
+are all lines of work that will be explored in the future.
 
 
 \section*{Acknowledgments}
