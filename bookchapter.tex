@@ -482,7 +482,7 @@ topology. Here are the ten functions:
     \item Function 1: Sphere.
     \item Function 2: Ellipsoidal separable.
     \item Function 3: Rastrigin separable.
-    \item Function 9: Rosenbrock rota-ted.
+    \item Function 9: Rosenbrock rotated.
     \item Function 10: Ellipsoidal.
     \item Function 15: Rastrigin.
     \item Function 17: Schaffer F7, condition 10.
@@ -570,11 +570,33 @@ performance of a multi-population optimization algorithm.
 
 
 One of the aspects we can look at is if separability is exploited by
-the new communication policies. Essentially, functions 1, 10, and 15
+the new communication policies. Essentially, functions 1 to 3
 look at that kind of thing (Sphere, Ellipsoidal and Rastrigin). In
 this case there is not a clear evidence that that happens; as a matter
-of fact, the only significantly better result occurs with the original
-EvoSwarm in the case of the ellipsoidal function.
+of fact, the only significantly better result occurs with the Chain
+MSE and Hypercube. This last one is significantly better both for 10
+and 20 dimensions.
+
+Function 9 (rotated Rosenbrock), which would give us a hint on whether
+the new policies can follow a long path, does not offer a significant
+variation over the original policy.
+
+Function 10 (Ellipsoidal) is unimodal. The only significan difference
+is offered by the original EvoSwarm, gut this is diluted at higher
+dimensions.
+
+The next set of functions are multimodal: F15, F17 and F18 offer
+slight and not signifificant at higher level, advantages for the new
+policies. There's a significant difference for the Chain policy at 10
+dimensions, not any more at higher dimensions.
+
+F21 and F22 are multimodal functions; in this case, Chain ahd
+Hypercube are significantly better, although only at higher
+dimensions.
+
+In general, using these functions allowed us to characterize where
+different communication policies might offer any advantage over the
+baseline policy. We will try to draw some conclusions next.
 
 % There does not seem to be a big difference, and none at all between
 % the different technologies. You should comment on this, and why it
