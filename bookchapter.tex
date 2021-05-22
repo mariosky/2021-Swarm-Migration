@@ -480,10 +480,10 @@ topology. Here are the ten functions:
 \begin{itemize}
 
     \item Function 1: Sphere.
-    \item Function 2: Elipsoid separable.
+    \item Function 2: Ellipsoidal separable.
     \item Function 3: Rastrigin separable.
     \item Function 9: Rosenbrock rota-ted.
-    \item Functions 10: Elipsoid.
+    \item Function 10: Ellipsoidal.
     \item Function 15: Rastrigin.
     \item Function 17: Schaffer F7, condition 10.
     \item Function 18: Schaffer F7, condition 1000.
@@ -506,7 +506,8 @@ reviewed in reference \cite{bbob}.
 We run the experiments in a single computer using a Ryzen 5 2600x CPU and 24 GB
 of ram in Windows 10 Professional 64 bits, using Docker Desktop version 2.5,
 running ten containers. We used Python version 3.5.7. We conducted each
-experiment separately 30 times. The time required for each run took about 7
+experiment separately 30 times. % Are source and results available? - JJ
+The time required for each run took about 7
 hours. In these experiments, we are not interested in the total time required to
 find a solution as the changes in the algorithm did not affect the running time.
 In this case, we are focused on the MSE of the best solution found with the same
@@ -518,20 +519,16 @@ However, once we reach twenty dimensions, the original topology obtains the
 worst results. Overall the chain topology gives a better MSE in 20 dimensions,
 only having two cases with a lower MSE than the hypercube configuration. We can
 see that the standard deviation of the MSE obtained by the three options only
-varies in few cases.In particular, the function $f_{10}$ was difficult for this
-algorithm and could not find a target in any run.  
+varies in few cases. In particular, the function $f_{10}$ was difficult for this
+algorithm and could not find a target in any run.
 
 In the same table, we present the results of the statistical tests of comparing
 both topologies against the original migration. In this case, we use a \(Z\)
 statistical test with an $\alpha$ of 0.5, giving a critical value of 1.64.
-Underline results have sufficient statistical evidence to have less MSE; this
+Underlined results have sufficient statistical evidence to have less MSE; this
 means that changing the communication topology can improve, in some cases, the
 performance of a multi-population optimization algorithm.
 
-
-% Also, % you need to comment these results JJ % Also,
-% you need to comment these results JJ
-% ok - M 
 
 \begin{table}[h!tb]
     \centering
