@@ -94,7 +94,7 @@ University of Granada, Spain, \email{jmerelo@ugr.es}}
   between swarms is organized. These policies intend to limit the communication
   between populations to increase per-swarm exploration and avoid premature
   convergence through exploring different parts of the space in different
-  swarms. The proposed policies are chain and hypercubic topologies and compare
+  swarms. The proposed policies are chain and hypercube topologies and compare
   them against a simple cross-over strategy using several continuous
   optimization benchmark functions to assess the benefits of choosing one
   communication topology over another. After the experiments, the chain-based
@@ -202,8 +202,8 @@ communication, because
 
 In this paper, we propose the two communication topologies to be
 implemented in a even-based distributed multi-swarm Particle Swarm
-Optimization (PSO) algorithm.  These comminication topologies follow a
-chain and a hypercube structure on a milti-swarm. We chose these
+Optimization (PSO) algorithm.  These communication topologies follow a
+chain and a hypercube structure on a multi-swarm. We chose these
 topologies for their ability to be adapted to the architecture
 mentioned above. They can work without altering the optimization
 algorithm allowing a fair comparison with other communication methods.
@@ -241,7 +241,7 @@ some simple rules derived from formulas. % This is not the state of
 The movements in the particles' search space are
 determined by their best known locations and by the best known location
 of the entire swarm. % Using "known" here is confusing. - JJ
-These locations are suppossed to get better and they will
+These locations are supposed to get better and they will
 guide the swarm's movements. The process is repeated many times, so it
 is expected that solution that meets the requirements will eventually be
 discovered, although this may not happen\cite{b3}. % All this should
@@ -267,7 +267,7 @@ For example, Wave of Swarm of Particles \cite{b6} uses a technique on
 the "collision" of particles. % Technique on? Please rephrase - JJ
 When the
 particles are close to each other, they are sent into new sub-swarms,
-preventing full convengece between the sub-swarms. Another examples is the Dynamic Multi-Swarm-Particle
+preventing full convergence between the sub-swarms. Another examples is the Dynamic Multi-Swarm-Particle
 Swarm Optimizer\cite{b7} that rearranges the particles from the sub-swarms
 (when converged) into new ones periodically, so the new
 iteration of sub-swarms have the advantage of starting with particles from the previous
@@ -278,16 +278,16 @@ new regions making the sub-swarm move to the new promised location ("keep going"
 In contrast to typical PSO swarms, sub-swarms are fed with information about
 previous swarms. % previous in what sense? - JJ
 These could be the positions and velocities instead of having
-their initial parameters to be randomly selected. Generaly speaking, the development of
+their initial parameters to be randomly selected. Generally speaking, the development of
 multi-swarm systems creates a new path of design options that who were not present at the time the original PSO emerged. 
 These design decisions now have guidelines thanks to the numerous studies on the topic, for
-example, tow common opotions are the use of non-random initial positions and initial velocities for the particles in the subs-warms helping to
+example, tow common options are the use of non-random initial positions and initial velocities for the particles in the subs-warms helping to
 better results, which is not the case for individual swarms \cite{b9}.
 
 A few number of this options can be reached by relatively independent
-subcomponents that allow different aproaches to this matter to be
+subcomponents that allow different approaches to this matter to be
 tested. For example, the multi-swarm system UMDA-PSO \cite{b10} 
-applies a multi-swarm hybrid aproach using a diverse combination of 
+applies a multi-swarm hybrid approach using a diverse combination of 
 elements from particle swarm optimization, distribution estimation 
 algorithm, and differential evolution.
 
@@ -297,15 +297,15 @@ between swarms, for example the survey in reference \cite{b15} has a
 collection of different investigations around this subject. For
 example El-Abd and Kamel talked over the multiple factors that can
 change the overall behavior of multiple joined swarms, some of this factors
-were the strategy and path of comunications between swarms and the number sub-swarms. 
-Then an experiment was made applying a circular topology of comunications, 
-the results demonstrated that this aproach has an overall superior performance 
-than using a simpler techniche of sharing the global best of all the swarms\cite{b16}. 
+were the strategy and path of communications between swarms and the number sub-swarms. 
+Then an experiment was made applying a circular topology of communications, 
+the results demonstrated that this approach has an overall superior performance 
+than using a simpler technique of sharing the global best of all the swarms\cite{b16}. 
 
 Another example and the source of inspiration for this paper, is one
 of Li and Zeng, % please check name spelling - JJ
 who presented a multi-population algorithm with a chain-like structure for parallel global
-numerical optimization. In this aproximation a few changes where applied, like a dynamic neighborhood,
+numerical optimization. In this approximation a few changes where applied, like a dynamic neighborhood,
 in order to improve the parallel optimization\cite{b17}.
 
 % A state of the art section must have a conclusion, saying why your
@@ -435,7 +435,7 @@ same parameters for the PSO algorithm as the EvoSwarm paper (see Table 1).
 
 \begin{table}[h!]
 \centering
-\caption{Parameters PSO of Evolopy libray}
+\caption{Parameters PSO of Evolopy library}
 \begin{tabular}{|c c|} 
  \hline
  Parameters & Values  \\ [0.5ex] 
@@ -581,16 +581,16 @@ Function 9 (rotated Rosenbrock), which would give us a hint on whether
 the new policies can follow a long path, does not offer a significant
 variation over the original policy.
 
-Function 10 (Ellipsoidal) is unimodal. The only significan difference
+Function 10 (Ellipsoidal) is unimodal. The only significant difference
 is offered by the original EvoSwarm, gut this is diluted at higher
 dimensions.
 
 The next set of functions are multimodal: F15, F17 and F18 offer
-slight and not signifificant at higher level, advantages for the new
+slight and not significant at higher level, advantages for the new
 policies. There's a significant difference for the Chain policy at 10
 dimensions, not any more at higher dimensions.
 
-F21 and F22 are multimodal functions; in this case, Chain ahd
+F21 and F22 are multimodal functions; in this case, Chain and
 Hypercube are significantly better, although only at higher
 dimensions.
 
@@ -639,7 +639,7 @@ that the change to the communication method is relevant for this type
 of system in specific situations. The alteration of the different work
 policies in multi-swarm systems could lead to greater specialization
 of these in specific scenarios. We could test, for instance, adaptive
-policies, or even changhing the number and size of swarms so that
+policies, or even changing the number and size of swarms so that
 exploitation can be maintained at a higher clip in some cases. These
 are all lines of work that will be explored in the future.
 
