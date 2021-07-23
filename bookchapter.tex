@@ -144,17 +144,19 @@ University of Granada, Spain, \email{jmerelo@ugr.es}}
 % 4. Say how you want to prove that hypothesis.
 
 Bio-inspired optimization algorithms are intrinsically parallel, and researchers
-have exploited this fact since their conception. A typical implementation is to
-divide a global population into many smaller populations working in parallel and
-(possibly) asynchronously. Multipopulation designs have been used to solve
-large-scale complex optimization problems, where the search space has many
-locally optimal solutions \cite{a1}. Several studies are showing that
-multi-population optimization often outperforms single-population approaches
-\cite{b11} \cite{b12}. Another advantage of multi-population optimization is the
-ability to have a parallel execution of each population, significantly improving
-computation time. Many proposals are using multi-threaded, parallel, and
-distributed processing to increase the speedup of the execution time \cite{b13}
-\cite{b14}.
+have exploited this fact since their conception. Initially, several researchers
+proposed a multi-population approach for Genetic Algorithms (GAs), using various
+architectures described in detail in classical \cite{r1} and more recent surveys
+{r2}. A typical implementation is to divide a global population into many
+smaller populations working in parallel and (possibly) asynchronously.
+Multipopulation designs have been used to solve large-scale complex optimization
+problems, where the search space has many locally optimal solutions \cite{a1}.
+Several studies are showing that multi-population optimization often outperforms
+single-population approaches \cite{b11} \cite{b12}. Another advantage of
+multi-population optimization is the ability to have a parallel execution of
+each population, significantly improving computation time. Many proposals are
+using multi-threaded, parallel, and distributed processing to increase the
+speedup of the execution time \cite{b13} \cite{b14}.
 
 % Among the various strategies that have emerged in recent times for bio-inspired
 % optimization algorithms, the creation of multiple populations working
@@ -220,7 +222,8 @@ work.
 \label{sec:soa}
 
 Particle Swarm Optimization (PSO) is an optimization algorithm
-inspired by the collective behavior of some flocks of birds and schools of fish. It was introduced in 1995 by  J. Kennedy and
+inspired by the collective behavior of some flocks of birds and schools 
+of fish. It was introduced in 1995 by  J. Kennedy and
 R. Eberhart, and since then it has undergone several improvements \cite{b1}. % pon el nombre del autor - M -j
 Since then, researchers have created different versions, aimed at different
 purposes, developed new applications in various areas, published many
@@ -255,7 +258,8 @@ Multi-swarm optimization is one of the most widely known variants of Particle Sw
 instead of just one. % What is the motivation for MSPSO? Why do you
                      % focus on it on this paper? - JJ
 The basic flow in
-a multi-swarm optimization is that each sub-swarm has its own specific region to concentrate. A specific diversification method decides where and
+a multi-swarm optimization is that each sub-swarm has its own specific 
+region to concentrate. A specific diversification method decides where and
 when to locate and execute this sub-swarms. % First mention of
                                 % diversification method. What is it?
                                 % - JJ
@@ -277,12 +281,15 @@ new regions making the sub-swarm move to the new promised location ("keep going"
 
 In contrast to typical PSO swarms, sub-swarms are fed with information about
 previous swarms. % previous in what sense? - JJ
-These could be the positions and velocities instead of having
-their initial parameters to be randomly selected. Generally speaking, the development of
-multi-swarm systems creates a new path of design options that who were not present at the time the original PSO emerged. 
-These design decisions now have guidelines thanks to the numerous studies on the topic, for
-example, tow common options are the use of non-random initial positions and initial velocities for the particles in the subs-warms helping to
-better results, which is not the case for individual swarms \cite{b9}.
+
+These could be the positions and velocities instead of having their initial
+parameters to be randomly selected. Generally speaking, the development of
+multi-swarm systems creates a new path of design options that who were not
+present at the time the original PSO emerged. These design decisions now have
+guidelines thanks to the numerous studies on the topic, for example, tow common
+options are the use of non-random initial positions and initial velocities for
+the particles in the subs-warms helping to better results, which is not the case
+for individual swarms \cite{b9}.
 
 A few number of this options can be reached by relatively independent
 subcomponents that allow different approaches to this matter to be
@@ -292,6 +299,7 @@ elements from particle swarm optimization, distribution estimation
 algorithm, and differential evolution.
 
 % Rewrite this too -- JJ
+
 There have been some papers focused in optimizing the communication
 between swarms, for example the survey in reference \cite{b15} has a
 collection of different investigations around this subject. For
@@ -303,7 +311,7 @@ the results demonstrated that this approach has an overall superior performance
 than using a simpler technique of sharing the global best of all the swarms\cite{b16}. 
 
 Another example and the source of inspiration for this paper, is one
-of Li and Zeng, % please check name spelling - JJ
+of Yongming and Xiaoping, % please check name spelling - JJ
 who presented a multi-population algorithm with a chain-like structure for parallel global
 numerical optimization. In this approximation a few changes where applied, like a dynamic neighborhood,
 in order to improve the parallel optimization\cite{b17}.
